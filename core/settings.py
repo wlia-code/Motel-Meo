@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'motel_meo',
 ]
 
 MIDDLEWARE = [
@@ -82,11 +83,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-DATABASE =  {
+#DATABASE =  {
+#    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+#}
+#print(f"DATABASE_URL: {os.environ.get('DATABASE_URL')}")
+#print(f"SECRET_KEY: {os.environ.get('SECRET_KEY')}")
+DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
-print(f"DATABASE_URL: {os.environ.get('DATABASE_URL')}")
-print(f"SECRET_KEY: {os.environ.get('SECRET_KEY')}")
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
