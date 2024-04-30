@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Search</title>
+</head>
+<body>
+    <h1>Hotel Search</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Search</button>
+    </form>
+
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <p class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if available_rooms %}
+    <h2>Available Rooms:</h2>
+    <ul>
+        {% for room in available_rooms %}
+        <li>
+            Hotel: {{ room.hotel.name }} - Room Type: {{ room.get_room_type_display }}
+            <form method="post">
+                {% csrf_token %}
+                <a href="/book-room?roomid={{ room.id }}"><button class="btn btn-warning">Book Now</button></a>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

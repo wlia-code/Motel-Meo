@@ -10,7 +10,7 @@ class Hotel(models.Model):
     state = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name
+        return self.location
 
     class Meta:
         verbose_name_plural = "Hotels"
