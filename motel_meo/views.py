@@ -58,12 +58,10 @@ def sign_up(request):
             password2 = form.cleaned_data['password2']
             if password1 != password2:
                 messages.warning(request, "Passwords didn't match")
-                print("Hello Login1")
                 return redirect('https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/login/')
             try:
                 if User.objects.get(username=user_name):
                     messages.warning(request, "Username not available")
-                    print("Hello Login2")
                     return redirect('https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/login/')
             except User.DoesNotExist:
                 pass
@@ -72,7 +70,6 @@ def sign_up(request):
             new_user.is_staff = False
             new_user.save()
             messages.success(request, "Registration successful")
-            print("Hello Login3")
             return redirect("https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/login/")
     else:
         form = UserRegistrationForm()

@@ -28,12 +28,16 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io', 'localhost',
                     'https://motel-meo-2bd41eb1b83a.herokuapp.com/','localhost']
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io']
+CSRF_TRUSTED_ORIGINS = ['https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io',
+
+    "https://*.codeanyapp.com",
+    "https://*.herokuapp.com",
+    "https://*.gitpod.io"]
 
 
 # Application definition
