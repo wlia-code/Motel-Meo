@@ -35,9 +35,9 @@ ALLOWED_HOSTS = ['8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io', 'local
 
 CSRF_TRUSTED_ORIGINS = ['https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io',
 
-    "https://*.codeanyapp.com",
-    "https://*.herokuapp.com",
-    "https://*.gitpod.io"]
+                        "https://*.codeanyapp.com",
+                        "https://*.herokuapp.com",
+                        "https://*.gitpod.io",'motel-meo-2bd41eb1b83a.herokuapp.com']
 
 
 # Application definition
