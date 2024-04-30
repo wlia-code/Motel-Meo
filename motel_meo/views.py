@@ -45,71 +45,7 @@ def home(request):
     return render(request, 'index.html', context)
 
 
-def sign_up(request):
-    """
-    View function for user registration.
-    Handles the registration form submission and creates a new user.
-    """
-    if request.method == "POST":
-        form = UserRegistrationForm(request.POST)
-        if form.is_valid():
-            user_name = form.cleaned_data['username']
-            password1 = form.cleaned_data['password1']
-            password2 = form.cleaned_data['password2']
-            if password1 != password2:
-                messages.warning(request, "Passwords didn't match")
-                return redirect('https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/login/')
-            try:
-                if User.objects.get(username=user_name):
-                    messages.warning(request, "Username not available")
-                    return redirect('https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/login/')
-            except User.DoesNotExist:
-                pass
-            new_user = User.objects.create_user(username=user_name, password=password1)
-            new_user.is_superuser = False
-            new_user.is_staff = False
-            new_user.save()
-            messages.success(request, "Registration successful")
-            return redirect("https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/login/")
-    else:
-        form = UserRegistrationForm()
-
-    return render(request, 'registration.html', {'form': form})
-
-def log_in(request):
-    """
-    View function for user login.
-    Handles the login form submission and authenticates the user.
-    """
-    if request.method == 'POST':
-        user_name = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=user_name, password=password)
-        if user is not None:
-            login(request, user)
-            messages.success(request, "Successfully logged in")
-            return redirect('https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/') 
-        else:
-            messages.warning(request, "Incorrect username or password")
-            return redirect('https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/login/')
-
-    return render(request, 'login.html')
-
-def log_out(request):
-    """
-    View function for user logout.
-    Logs out the authenticated user and redirects to the home page.
-    """
-    if request.method =='GET':
-        logout(request)
-        messages.success(request,"Logged out successfully")
-        print("Logged out successfully")
-        return redirect('https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/')
-    else:
-        print("logout unsuccessfull")
-        return redirect('https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/login/')
-
-@login_required(login_url='/login/')
+@login_required
 def book_room_page(request):
     """
     View function for booking a room.
@@ -126,7 +62,7 @@ def book_room_page(request):
         return HttpResponse("Room not found.")
 
 
-@login_required(login_url='/login/')
+@login_required
 def book_room(request):
     if request.method == "POST":
         room_id = request.POST.get('room_id')
