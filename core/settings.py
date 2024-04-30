@@ -28,7 +28,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io', 'localhost',
                     'https://motel-meo-2bd41eb1b83a.herokuapp.com/','localhost']
