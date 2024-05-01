@@ -37,7 +37,7 @@ CSRF_TRUSTED_ORIGINS = ['https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.git
 
                         "https://*.codeanyapp.com",
                         "https://*.herokuapp.com",
-                        "https://*.gitpod.io",'motel-meo-2bd41eb1b83a.herokuapp.com']
+                        "https://*.gitpod.io",'https://motel-meo-2bd41eb1b83a.herokuapp.com']
 
 
 # Application definition
@@ -50,11 +50,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'cloudinary_storage',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'cloudinary',
     'motel_meo',
     'allauth',
+    'crispy_forms',
     'allauth.account',
 ]
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

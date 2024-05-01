@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Hotel(models.Model):
     """
     Represents a hotel with basic information.
@@ -60,3 +61,5 @@ class Booking(models.Model):
 
     class Meta:
         verbose_name_plural = "Booking"
+
+

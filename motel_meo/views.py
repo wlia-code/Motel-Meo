@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Hotel, Room, Booking
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -6,6 +6,8 @@ from .forms import SearchForm, UserRegistrationForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+
+
 
 def home(request):
     """
@@ -89,4 +91,3 @@ def book_room(request):
             return redirect("https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/")
     else:
         return HttpResponse('Access Denied')
-
