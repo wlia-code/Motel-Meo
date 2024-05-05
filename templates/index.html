@@ -12,69 +12,72 @@
                 <form method="post" class="row g-3">
                     {% csrf_token %}
                     <div class="col-md-3">
+                        <label for="check-in">Check in:</label>
+                        <input type="date" class="form-control" id="check-in" name="check_in">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="check-out">Check out:</label>
+                        <input type="date" class="form-control" id="check-out" name="check_out">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="location" class="form-label">Location:</label>
                         {{ form.search_location }}
                     </div>
                     <div class="col-md-3">
-                        <input type="date" class="form-control" id="check-in" name="check_in"></div>
-                        <div class="col-md-3">
-                            <input type="date" class="form-control" id="check-out" name="check_out"></div>
-                            <div class="col-md-3">
-                                {{ form.capacity }}
-                            </div>
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-primary">Search</button>
-                            </div>
-                        </form>
+                        <label for="capacity" class="form-label">Capacity:</label>
+                        {{ form.capacity }}
+                    </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% if messages %}
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="messages">
+                        {% for message in messages %}
+                            <p class="{{ message.tags }}">{{ message }}</p>
+                        {% endfor %}
                     </div>
                 </div>
-                {% if messages %}
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <div class="messages">
-                                {% for message in messages %}
-                                    <p class="{{ message.tags }}">{{ message }}</p>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
-                {% if available_rooms %}
-                    <div class="row mt-3">
-                        <div class="col-md-12">
-                            <h2>Available Rooms:</h2>
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th>Hotel Name</th>
-                                            <th>Room Type</th>
-                                            <th>Price</th>
-                                            <th>Capacity</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for room in available_rooms %}
-                                            <tr>
-                                                <td>{{ room.hotel.name }}</td>
-                                                <td>{{ room.get_room_type_display }}</td>
-                                                <td>${{ room.price }}</td>
-                                                <td>{{ room.capacity }}</td>
-                                                <td>
-                                                    <a href="{% url 'book-room-page' %}?roomid={{ room.id }}">
-                                                        <button class="btn btn-info">Book Now</button>
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
             </div>
-
-
-        {% endblock %}
-
+        {% endif %}
+        {% if available_rooms %}
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <h2>Available Rooms:</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Hotel Name</th>
+                                    <th>Room Type</th>
+                                    <th>Price</th>
+                                    <th>Capacity</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for room in available_rooms %}
+                                    <tr>
+                                        <td>{{ room.hotel.name }}</td>
+                                        <td>{{ room.get_room_type_display }}</td>
+                                        <td>${{ room.price }}</td>
+                                        <td>{{ room.capacity }}</td>
+                                        <td>
+                                            <a href="{% url 'book-room-page' %}?roomid={{ room.id }}">
+                                                <button class="btn btn-info">Book Now</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
