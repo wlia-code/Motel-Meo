@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io', 'localhost',
+ALLOWED_HOSTS = ['8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu111.gitpod.io', 'localhost',
                     'https://motel-meo-2bd41eb1b83a.herokuapp.com/','motel-meo-2bd41eb1b83a.herokuapp.com']
 
 CSRF_TRUSTED_ORIGINS = ['https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io',
@@ -51,18 +51,24 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'allauth',
+    'allauth.account',
     'cloudinary',
     'motel_meo',
-    'allauth',
     'crispy_forms',
-    'allauth.account',
+    "crispy_bootstrap5",
 ]
 
-SITE_ID = 1
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",  
+    "allauth.account.auth_backends.AuthenticationBackend",  
+]
 
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+SITE_ID = 1  
+
+ACCOUNT_EMAIL_VERIFICATION = "none"  
+
+LOGIN_REDIRECT_URL = "/"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -75,7 +81,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "allauth.account.middleware.AccountMiddleware",
+    "allauth.account.middleware.AccountMiddleware"
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -83,7 +89,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["TEMPLATES_DIR"],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -96,15 +102,7 @@ TEMPLATES = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = [
-  
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
 
-    # `allauth` specific authentication methods, such as login by email
-    'allauth.account.auth_backends.AuthenticationBackend',
-   
-]
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
@@ -123,6 +121,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 #}
 #print(f"DATABASE_URL: {os.environ.get('DATABASE_URL')}")
 #print(f"SECRET_KEY: {os.environ.get('SECRET_KEY')}")
+
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
@@ -160,6 +159,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

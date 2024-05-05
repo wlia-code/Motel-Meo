@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Hotel, Room, Booking
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import SearchForm, UserRegistrationForm
+from .forms import SearchForm, UserRegistrationForm,BookingForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-
+import datetime
+from django.shortcuts import get_object_or_404
 
 
 def home(request):
@@ -66,28 +67,84 @@ def book_room_page(request):
 
 @login_required
 def book_room(request):
-    if request.method == "POST":
-        room_id = request.POST.get('room_id')
-        room = Room.objects.get(id=room_id)
+    """
+    View function for processing room booking requests.
+    Requires the user to be logged in.
+    """
+    if request.method =="POST":
+        room_id = request.POST['room_id']
+        room = Room.objects.all().get(id=room_id)
+        for booking in Booking.objects.all().filter(room = room):
+            if str(booking.check_in) < str(request.POST['check_in']) and str(booking.check_out) < str(request.POST['check_out']):
+                pass
+            elif str(booking.check_in) > str(request.POST['check_in']) and str(booking.check_out) > str(request.POST['check_out']):
+                pass
+            else:
+                messages.warning(request,"Sorry This Room is unavailable for Booking")
+                return redirect("homepage")
+            
+        current_user = request.user
+        total_person = int(request.POST['person'])
+        booking_id = str(room_id) + str(datetime.datetime.now())
+
+        booking = Booking()
+        room_object = Room.objects.all().get(id=room_id)
+        room_object.status = '2'
         
-        check_in = request.POST.get('check_in')
-        check_out = request.POST.get('check_out')
+        user_object = User.objects.all().get(username=current_user)
 
-        if room.is_available(check_in, check_out):
-            booking = Booking.objects.create(
-                room=room,
-                customer=request.user,
-                check_in=check_in,
-                check_out=check_out
-            )
-
-            room.status = '2'
-            room.save()
-
-            messages.success(request, "Congratulations! Booking Successful")
-            return redirect("https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/")
-        else:
-            messages.warning(request, "Sorry, This Room is unavailable for Booking")
-            return redirect("https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/")
+        booking.customer = user_object
+        booking.room = room_object
+        person = total_person
+        booking.check_in = request.POST['check_in']
+        booking.check_out = request.POST['check_out']
+        booking.save()
+        messages.success(request,"Congratulations! Booking Successfull")
+        return redirect("https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/my-booking")
     else:
         return HttpResponse('Access Denied')
+
+@login_required
+def my_booking(request):
+    """
+    View function for displaying user's bookings.
+    Requires the user to be logged in.
+    """
+    if request.user.is_authenticated == False:
+        return redirect('https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/')
+    user = User.objects.all().get(id=request.user.id)
+    bookings = Booking.objects.all().filter(customer=user)
+    if not bookings:
+        messages.warning(request,"No Bookings Found")
+    return HttpResponse(render(request,'my_booking.html',{'bookings':bookings}))
+
+
+@login_required
+def edit_booking(request, booking_id):
+    """
+    View function for editing a booking.
+    Requires the user to be logged in.
+    """
+    booking = get_object_or_404(Booking, id=booking_id)
+
+    if request.method == "POST":
+        form = BookingForm(request.POST, instance=booking)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Booking updated successfully")
+            return redirect("my_booking")
+    else:
+        form = BookingForm(instance=booking)
+    
+    return render(request, "edit_booking.html", {"form": form})
+
+@login_required
+def delete_booking(request, booking_id):
+    """
+    View function for deleting a booking.
+    Requires the user to be logged in.
+    """
+    booking = get_object_or_404(Booking, id=booking_id)
+    booking.delete()
+    messages.success(request, "Booking deleted successfully")
+    return redirect("return redirect('https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/my-booking')")

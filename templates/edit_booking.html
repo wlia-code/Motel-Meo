@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Edit Booking
+{% endblock title %}
+{% block body %}
+    <h3 class="text-center text-success">Edit Booking</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+{% endblock body %}
+

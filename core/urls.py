@@ -19,7 +19,7 @@ from django.urls import path,include
 from core import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('',include("motel_meo.urls")),
+    path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
 ]
