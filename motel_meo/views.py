@@ -81,7 +81,7 @@ def book_room(request):
                 pass
             else:
                 messages.warning(request,"Sorry This Room is unavailable for Booking")
-                return redirect("homepage")
+                return redirect("https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu111.gitpod.io/")
             
         current_user = request.user
         total_person = int(request.POST['person'])
@@ -100,7 +100,7 @@ def book_room(request):
         booking.check_out = request.POST['check_out']
         booking.save()
         messages.success(request,"Congratulations! Booking Successfull")
-        return redirect("https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/my-booking")
+        return redirect("https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/")
     else:
         return HttpResponse('Access Denied')
 
@@ -132,7 +132,7 @@ def edit_booking(request, booking_id):
         if form.is_valid():
             form.save()
             messages.success(request, "Booking updated successfully")
-            return redirect("my_booking")
+            return redirect("https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/")
     else:
         form = BookingForm(instance=booking)
     
@@ -147,4 +147,4 @@ def delete_booking(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     booking.delete()
     messages.success(request, "Booking deleted successfully")
-    return redirect("return redirect('https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/my-booking')")
+    return redirect("https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/")

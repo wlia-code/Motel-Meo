@@ -4,51 +4,47 @@
     Book Room
 {% endblock title %}
 
-{% block body %}
+{% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-6 col-lg-6 col-xlg-6 col-sm-12 mx-auto my-4 ">
-            <form action="/book-room/book/" method="POST">
+        <div class="col-md-6 col-lg-6 col-xlg-6 col-sm-12 mx-auto my-4">
+            <form action="{% url 'bookroom' %}" method="POST">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="hotel">Hotel:</label>
-                    <input type="text" class="form-control" id="hotel" name="hotel" disabled value="{{ room.hotel.name }}">
-                </div>
-                <div class="form-group">
-                    <label for="location">Location:</label>
-                    <input type="text" class="form-control" id="location" name="location" disabled value="{{ room.hotel.location }}">
-                </div>
-                <div class="form-group">
-                    <label for="username">Username:</label>
-                    <input type="text" class="form-control" id="username" name="username" required value="{{ request.user }}" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="person">Capacity:</label>
-                    <input type="number" class="form-control" id="person" name="person" min="1" max="{{ room.capacity }}" required value="{{ room.capacity }}">
-                </div>
-                <div class="form-group">
-                    <label for="check_in">Check-in:</label>
-                    <input type="date" class="form-control" id="check_in" name="check_in" min="{{ todays_date }}" max="{{ max_date }}" required>
-                </div>
-                <div class="form-group">
-                    <label for="check_out">Check-out:</label>
-                    <input type="date" class="form-control" id="check_out" name="check_out" min="{{ tommorow }}" max="{{ max_date }}" required>
-                </div>
-                <div class="form-group">
-                    <label for="roomtype">Room Type:</label>
-                    <input type="text" class="form-control" id="roomtype" name="roomtype" disabled value="{{ room.get_room_type_display }}">
-                </div>
-                <div class="form-group">
-                    <label for="price">Price:</label>
-                    <input type="number" class="form-control" id="price" name="price" disabled value="{{ room.price }}">
-                </div>
-                <a href="/book-room?roomid={{ room.id }}">
-                    <button class="btn btn-warning">Book Now</button>
-                </a>
-
-                <input type="hidden" name="room_id" value="{{ room.id }}">
-            </form>
-        </div>
-    </div>
-</div>
-{% endblock body %}
+                    <input type="text" class="form-control" id="hotel" name="hotel" disabled="disabled" value="{{ room.hotel.name }}"></div>
+                    <div class="form-group">
+                        <label for="location">Location:</label>
+                        <input type="text" class="form-control" id="location" name="location" disabled="disabled" value="{{ room.hotel.location }}"></div>
+                        {% if user.is_authenticated %}
+                            <div class="form-group">
+                                <label for="username">Username:</label>
+                                <input type="text" class="form-control" id="username" name="username" required="required" value="{{ request.user }}" readonly="readonly"></div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label for="person">Capacity:</label>
+                                <input type="number" class="form-control" id="person" name="person" min="1" max="{{ room.capacity }}" required="required" value="{{ room.capacity }}"></div>
+                                <div class="form-group">
+                                    <label for="check_in">Check-in:</label>
+                                    <input type="date" class="form-control" id="check_in" name="check_in" min="{{ todays_date }}" max="{{ max_date }}" required="required"></div>
+                                    <div class="form-group">
+                                        <label for="check_out">Check-out:</label>
+                                        <input type="date" class="form-control" id="check_out" name="check_out" min="{{ tommorow }}" max="{{ max_date }}" required="required"></div>
+                                        <div class="form-group">
+                                            <label for="roomtype">Room Type:</label>
+                                            <input type="text" class="form-control" id="roomtype" name="roomtype" disabled="disabled" value="{{ room.get_room_type_display }}"></div>
+                                            <div class="form-group">
+                                                <label for="price">Price:</label>
+                                                <input type="number" class="form-control" id="price" name="price" disabled="disabled" value="{{ room.price }}"></div>
+                                                {% if user.is_authenticated %}
+                                                    <button type="submit" class="btn btn-primary">Book Now</button>
+                                                {% else %}
+                                                    <a href="{% url 'account_login' %}?next={% url 'bookroom' %}">
+                                                        <button class="btn btn-warning">Login to Book</button>
+                                                    </a>
+                                                {% endif %}
+                                                <input type="hidden" name="room_id" value="{{ room.id }}"></form>
+                                            </div>
+                                        </div>
+                                    </div>
+{% endblock content %}

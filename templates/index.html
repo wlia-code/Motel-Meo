@@ -1,37 +1,80 @@
 {% extends 'base.html' %}
-{% block body %}
-    <h1>Hotel Search</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Search</button>
-    </form>
 
-    {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-                <p class="{{ message.tags }}">{{ message }}</p>
-            {% endfor %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-12 mb-3">
+                <h1>Room Search</h1>
+            </div>
         </div>
-    {% endif %}
+        <div class="row">
+            <div class="col-md-12">
+                <form method="post" class="row g-3">
+                    {% csrf_token %}
+                    <div class="col-md-3">
+                        {{ form.search_location }}
+                    </div>
+                    <div class="col-md-3">
+                        <input type="date" class="form-control" id="check-in" name="check_in"></div>
+                        <div class="col-md-3">
+                            <input type="date" class="form-control" id="check-out" name="check_out"></div>
+                            <div class="col-md-3">
+                                {{ form.capacity }}
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                {% if messages %}
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <div class="messages">
+                                {% for message in messages %}
+                                    <p class="{{ message.tags }}">{{ message }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+                {% if available_rooms %}
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <h2>Available Rooms:</h2>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Hotel Name</th>
+                                            <th>Room Type</th>
+                                            <th>Price</th>
+                                            <th>Capacity</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for room in available_rooms %}
+                                            <tr>
+                                                <td>{{ room.hotel.name }}</td>
+                                                <td>{{ room.get_room_type_display }}</td>
+                                                <td>${{ room.price }}</td>
+                                                <td>{{ room.capacity }}</td>
+                                                <td>
+                                                    <a href="{% url 'book-room-page' %}?roomid={{ room.id }}">
+                                                        <button class="btn btn-info">Book Now</button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
 
-    {% if available_rooms %}
-        <h2>Available Rooms:</h2>
-        <ul>
-            {% for room in available_rooms %}
-                <li>
-                    Hotel:
-                    {{ room.hotel.name }}
-                    - Room Type:
-                    {{ room.get_room_type_display }}
-                    <form method="post">
-                        {% csrf_token %}
-                        <a href="/book-room?roomid={{ room.id }}">
-                            <button class="btn btn-warning">Book Now</button>
-                        </a>
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-{% endblock %}
+
+        {% endblock %}
+
