@@ -41,3 +41,17 @@ class BookingForm(forms.ModelForm):
             'check_in': forms.DateInput(attrs={'type': 'date'}),
             'check_out': forms.DateInput(attrs={'type': 'date'}),
         }
+
+class ContactForm(forms.Form):
+    name = forms.CharField(label='Your name', max_length=100)
+    email = forms.EmailField()
+    message = forms.CharField(widget=forms.Textarea)
+
+    def send_email(self):
+        # Logic to send email
+        from django.core.mail import send_mail
+        subject = f"Message from {self.cleaned_data['name']}"
+        message = self.cleaned_data['message']
+        sender = self.cleaned_data['email']
+        recipients = ['wasimalrawas9@gmail.com']
+        send_mail(subject, message, sender, recipients, fail_silently=False)

@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 import datetime
 from django.shortcuts import get_object_or_404
+from .forms import ContactForm
 
 
 def home(request):
@@ -149,3 +150,25 @@ def delete_booking(request, booking_id):
     booking.delete()
     messages.success(request, "Booking deleted successfully")
     return redirect("my-booking")
+
+
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            try:
+                form.send_email()
+                request.session['user_name'] = form.cleaned_data['name']
+                return redirect('success_url')
+            except Exception as e:
+                messages.error(request, f"Failed to send email: {str(e)}")
+                return render(request, 'contact.html', {'form': form})
+        else:
+            return render(request, 'contact.html', {'form': form})
+    else:
+        form = ContactForm()
+        return render(request, 'contact.html', {'form': form})
+
+def success_view(request):
+    name = request.session.get('user_name', 'Guest')
+    return render(request, 'success.html', {'user_name': name})

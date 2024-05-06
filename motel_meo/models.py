@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.conf import settings
 
 class Hotel(models.Model):
     """
@@ -38,7 +38,15 @@ class Room(models.Model):
     capacity = models.PositiveIntegerField()
     size = models.PositiveIntegerField()
     room_no = models.PositiveIntegerField()
+    image = models.ImageField(upload_to='images', blank=True, null=True)
     hotel = models.ForeignKey(Hotel, on_delete=models.CASCADE)
+
+
+    def get_image(self):
+        if self.image:
+            return settings.WEBSITE_URL + self.image.url
+        else:
+            return 'http://bulma.io/images/placeholders/1280x960.png'
 
     def __str__(self):
         return f"Hotel: {self.hotel.name} -- Room: {self.room_type} -- Price: {self.price}"

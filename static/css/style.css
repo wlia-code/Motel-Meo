@@ -1,8 +1,6 @@
-
 *{
     padding:0;
     margin:0;
-    height:auto;
 }
 .navbar{
     background-color: #00486C;
@@ -25,6 +23,14 @@
 }
 img {
     max-width: 100%;
+}
+.services{
+    background-color: #eeeeee;
+    height: 85vh;
+    color: #00486C;
+}
+.icon{
+    color: #00486C;
 }
 /* .my-booking{
     height:100vh;

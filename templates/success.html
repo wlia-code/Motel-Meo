@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="alert alert-success" role="alert">
+                    <h1 class="alert-heading">Thank You, {{ user_name }}!</h1>
+                    <p>Your message has been sent successfully. We will contact you soon.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

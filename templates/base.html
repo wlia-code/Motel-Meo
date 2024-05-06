@@ -12,91 +12,70 @@
             {% endblock title %}
         </title>
         <link rel="icon" type="image/x-icon" href="{% static 'favicon/favicon.ico' %}">
+
         {% block css %}
-            <!-- Bootstrap CSS -->
+            <!-- Bootstrap CSS for responsive and modern styling -->
             <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-            <!-- Custom CSS -->
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+            <!-- Custom CSS for specific styling -->
             <link rel="stylesheet" href="{% static 'css/style.css' %}">
         {% endblock css %}
     </head>
     <body>
-        <div
-            class="fill-viewport-height">
-            <!-- Navigation -->
-            <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-                <div class="container px-4">
-                    <a class="navbar-brand text-white hover-white fs-3" href="{% url 'home-page' %}">Motel Meo</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ms-auto">
+        <!-- Navigation bar for site navigation -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container px-4">
+                <a class="navbar-brand" href="{% url 'home-page' %}">Motel Meo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home-page' %}#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home-page' %}">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contact' %}#contact">Contact</a>
+                        </li>
+                        {% if user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'home-page' %}#about">About</a>
+                                <a class="nav-link" href="{% url 'my-booking' %}">My Booking</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'home-page' %}">Services</a>
+                                <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'home-page' %}#contact">Contact</a>
+                                <a class="nav-link" href="{% url 'account_login' %}">Login</a>
                             </li>
-                            {% if user.is_authenticated %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'my-booking' %}">My Booking</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-                                </li>
-                            {% else %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                                </li>
-                            {% endif %}
-                        </ul>
-                    </div>
+                        {% endif %}
+                    </ul>
                 </div>
-            </nav>
-
-            <!-- Alert Box -->
-            <!-- <div class='container-fluid mt-5 pt-4' id="alert-container">
-                <div class="row justify-content-center align-items-center">
-                    <div class="col ">
-                        {% for message in messages %}
-                            <div class="alert {{ message.tags }} alert-dismissible fade show text-center" id="msg" role="alert">
-                                {{ message | safe }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        {% endfor %}
-                    </div>
-                </div>
-            </div> -->
-
-            <!-- Content -->
-            <div> {% block content %}{% endblock %}
             </div>
-           
+        </nav>
 
+        <!-- Main content area where child templates will inject content -->
+        <div class="container-fluid"> {% block content %}{% endblock %}
+            </div>
 
-                <!-- Footer -->
-            <footer class="footer p-4 text-center text-light">
+            <!-- Footer section for site-wide footer content -->
+            <footer class="footer text-light text-center p-3 mt-4">
                 <div class="container">
-                    <p class="mt-4">Copyright © 2024 Your Site Name All Rights Reserved.</p>
+                    <p>Copyright © 2024 Motel Meo All Rights Reserved.</p>
                 </div>
             </footer>
 
-
-
-
-        <!-- Bootstrap JS -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-        <!-- Custom JS -->
-        <script src="{% static 'js/script.js' %}"></script>
-        <!-- Font Awesome -->
-        <script src="https://kit.fontawesome.com/076967cb18.js" crossorigin="anonymous"></script>
-            
-    </body>
+            <!-- Bootstrap JS for interactive components like modals and dropdowns -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- Custom JS for specific functionality -->
+            <script src="{% static 'js/script.js' %}"></script>
+            <!-- Font Awesome for icons -->
+            <script src="https://kit.fontawesome.com/076967cb18.js" crossorigin="anonymous"></script>
+        </body>
     </html>
