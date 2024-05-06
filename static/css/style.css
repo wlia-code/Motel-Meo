@@ -1,1 +1,34 @@
 
+*{
+    padding:0;
+    margin:0;
+    height:auto;
+}
+.navbar{
+    background-color: #00486C;
+}
+
+.footer{
+    background-color: #00486C;
+}
+.contact-btn{
+    color: #fff;
+    padding: 15px 40px;
+    background-color: #00486C;
+    border: none;
+    font-weight: 600;
+}
+.contact-btn:hover{
+    color: #00486C;
+    background-color: transparent;
+    border: 3px solid #00486C;
+}
+img {
+    max-width: 100%;
+}
+/* .my-booking{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-item:center;
+} */
