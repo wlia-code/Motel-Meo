@@ -20,6 +20,7 @@ class SearchForm(forms.Form):
     )
     capacity = forms.IntegerField(
         label="Capacity",
+        min_value=0, 
         widget=forms.NumberInput(attrs={'class': 'form-control'})
     )
 
