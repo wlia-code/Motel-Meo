@@ -81,7 +81,7 @@ def book_room(request):
                 pass
             else:
                 messages.warning(request,"Sorry This Room is unavailable for Booking")
-                return redirect("https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu111.gitpod.io/")
+                return redirect("book_room_page")
             
         current_user = request.user
         total_person = int(request.POST['person'])
@@ -100,7 +100,7 @@ def book_room(request):
         booking.check_out = request.POST['check_out']
         booking.save()
         messages.success(request,"Congratulations! Booking Successfull")
-        return redirect("https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/")
+        return redirect("my-booking")
     else:
         return HttpResponse('Access Denied')
 
@@ -111,7 +111,7 @@ def my_booking(request):
     Requires the user to be logged in.
     """
     if request.user.is_authenticated == False:
-        return redirect('https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/')
+        return redirect('home')
     user = User.objects.all().get(id=request.user.id)
     bookings = Booking.objects.all().filter(customer=user)
     if not bookings:
@@ -132,11 +132,12 @@ def edit_booking(request, booking_id):
         if form.is_valid():
             form.save()
             messages.success(request, "Booking updated successfully")
-            return redirect("https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/")
+            return redirect("my-booking")
     else:
         form = BookingForm(instance=booking)
     
-    return render(request, "edit_booking.html", {"form": form})
+    return render(request, "edit_booking.html", {"form": form, "booking": booking})
+
 
 @login_required
 def delete_booking(request, booking_id):
@@ -147,4 +148,4 @@ def delete_booking(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     booking.delete()
     messages.success(request, "Booking deleted successfully")
-    return redirect("https://8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu110.gitpod.io/")
+    return redirect("my-booking")
