@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'motel_meo',
     'crispy_forms',
     "crispy_bootstrap5",
+    'static'
 ]
 
 AUTHENTICATION_BACKENDS = [

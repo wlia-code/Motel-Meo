@@ -2,110 +2,214 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="https://images.unsplash.com/photo-1455587734955-081b22074882?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="Slide 1">
-        </div>
-        <div class="carousel-item">
-            <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="d-block w-100" alt="Slide 2">
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
 
-    <!-- Add more carousel items for additional slides -->
-</div>
 
-<div class="container-fluid">
+    <header class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome To Motel MEO</h1>
 
-    <div class="row">
-        <div class="col-md-12">
-            <form method="post" class="row g-3">
-                {% csrf_token %}
-                <div class="col-md-3">
-                    <label for="{{ form.search_location.id_for_label }}">Location:</label>
-                    {{ form.search_location }}
-                </div>
-                <div class="col-md-3">
-                    <label for="{{ form.check_in.id_for_label }}">Check-in Date:</label>
-                    {{ form.check_in }}
-                </div>
-                <div class="col-md-3">
-                    <label for="{{ form.check_out.id_for_label }}">Check-out Date:</label>
-                    {{ form.check_out }}
-                </div>
-                <div class="col-md-3">
-                    <label for="{{ form.capacity.id_for_label }}">Capacity:</label>
-                    {{ form.capacity }}
-                </div>
-                <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </div>
-            </form>
+            <p class="hero-subtitle">A night in MEO Is a Night to remember</p>
+
+
+            <a href="#rooms" class="hero-button">Check our rooms ⬇️</a>
+
         </div>
-    </div>
-    <!-- Display messages -->
-    <!-- {% if messages %}
-                            <div class="row mt-3">
-                                <div class="col-md-12">
-                                    <div class="messages">
-                                        {% for message in messages %}
-                                            <p class="{{ message.tags }}">{{ message }}</p>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
-{% endif %} -->
-    {% if available_rooms %}
-        <div class="row mt-3">
+    </header>
+
+    <div class="container-fluid my-4 py-5" id="search">
+        <h1 class="book-title">Book Now</h1>
+
+        <div class="row">
+
             <div class="col-md-12">
-                <h2>Available Rooms:</h2>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Hotel Name</th>
-                                <th>Room Type</th>
-                                <th>Price</th>
-                                <th>Capacity</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for room in available_rooms %}
-                                <tr>
-                                    <td>{{ room.hotel.name }}</td>
-                                    <td>{{ room.get_room_type_display }}</td>
-                                    <td>${{ room.price }}</td>
-                                    <td>{{ room.capacity }}</td>
-                                    <td>
-                                        <a href="{% url 'book-room-page' %}?roomid={{ room.id }}" aria-label="Book room at {{ room.hotel.name }}">
-                                            <button class="btn btn-info">Book Now</button>
-                                        </a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
+                <form method="post" class="row g-3">
+                    {% csrf_token %}
+                    <div class="col-md-3">
+                        <label class="search-label" for="{{ form.search_location.id_for_label }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+                            </svg>
+
+                            Location:</label>
+                        {{ form.search_location }}
+                    </div>
+                    <div class="col-md-3">
+                        <label class="search-label" for="{{ form.check_in.id_for_label }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-check" viewBox="0 0 16 16">
+                                <path d="M10.854 7.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 9.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                            </svg>
+                            Check-in Date:</label>
+
+                        {{ form.check_in }}
+                    </div>
+                    <div class="col-md-3">
+                        <label class="search-label" for="{{ form.check_out.id_for_label }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-event" viewBox="0 0 16 16">
+                                <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z"/>
+                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                            </svg>
+                            Check-out Date:</label>
+
+                        {{ form.check_out }}
+                    </div>
+                    <div class="col-md-3">
+                        <label class="search-label" for="{{ form.capacity.id_for_label }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                            </svg>
+                            Capacity:</label>
+
+                        {{ form.capacity }}
+                    </div>
+
+                    <div class="col-md-12 text-center my-5">
+                        <button type="submit" class="btn btn-primary btn-lg">Search
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                            </svg>
+                        </button>
+
+
+                    </div>
+                </form>
             </div>
         </div>
-    {% endif %}
-    <section class="contact bg-body-secondary text-center py-5" id="contact">
-        <div class="container">
-            <h2 class="mb-3" style="color:#00486C">Click Below To Call Us</h2>
-            <p class="mb-4" style="color:#00486C">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor debitis repellendus, sapiente repellat mollitia magni quasi. A sed deserunt amet?</p>
-            <button class="contact-btn" aria-label="Dial contact number">+1 234567 8900</button>
+        {% if available_rooms %}
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <h2>Available Rooms:</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Hotel Name</th>
+                                    <th>Room Type</th>
+                                    <th>Price</th>
+                                    <th>Capacity</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for room in available_rooms %}
+                                    <tr>
+                                        <td>{{ room.hotel.name }}</td>
+                                        <td>{{ room.get_room_type_display }}</td>
+                                        <td>${{ room.price }}</td>
+                                        <td>{{ room.capacity }}</td>
+                                        <td>
+                                            <a href="{% url 'book-room-page' %}?roomid={{ room.id }}" aria-label="Book room at {{ room.hotel.name }}">
+                                                <button class="btn btn-info">Book Now</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+
+    <div>
+        <h1 class="hero-title" id="rooms">Our Rooms</h1>
+
+        <div class="wrapper">
+            <h1>Single room</h1>
+            <div class="image i1"></div>
+            <div class="details">
+                <h1>
+                    <em>comfortable</em>
+
+                </h1>
+                <h2>for one persone</h2>
+                <p>Nice view to your swimming pool</p>
+
+            </div>
+            <button class="btn-hover color-9">
+                <a href="#search">Book Now</a>
+            </button>
+
+
         </div>
-    </section>
+
+        <div class="wrapper">
+            <h1>Double Room</h1>
+            <div class="image i2"></div>
+            <div class="details">
+                <h1>
+                    <em>comfortable</em>
+                </h1>
+                <h2>for two peoples</h2>
+                <p>Nice view to your swimming pool</p>
+
+            </div>
+            <button class="btn-hover color-9">
+                <a href="#search">Book Now</a>
+            </button>
+
+
+        </div>
+
+        <div class="wrapper">
+            <h1>Sweet</h1>
+            <div class="image i3"></div>
+            <div class="details">
+                <h1>
+                    <em>comfortable</em>
+
+                </h1>
+                <h2>for family</h2>
+                <p>Nice view to your swimming pool</p>
+
+            </div>
+            <button class="btn-hover color-9">
+                <a href="#search">Book Now</a>
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+    <h1 class="book-title">Testimonials</h1>
+
+
+    <div class="container d-flex justify-content-around my-4 py-4 flex-wrap">
+
+
+        <figure class="snip1390">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample3.jpg" alt="profile-sample3" class="profile"/>
+            <figcaption>
+                <h2>Eleanor Crisp</h2>
+                <h4>UX Design</h4>
+                <blockquote>Dad buried in landslide! Jubilant throngs fill streets! Stunned father inconsolable - demands recount!</blockquote>
+            </figcaption>
+        </figure>
+        <figure class="snip1390 hover"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample5.jpg" alt="profile-sample5" class="profile"/>
+            <figcaption>
+                <h2>Gordon Norman</h2>
+                <h4>Accountant</h4>
+                <blockquote>Wormwood : Calvin, how about you? Calvin : Hard to say ma'am. I think my cerebellum has just fused.
+                </blockquote>
+            </figcaption>
+        </figure>
+        <figure class="snip1390"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample6.jpg" alt="profile-sample6" class="profile"/>
+            <figcaption>
+                <h2>Sue Shei</h2>
+                <h4>Public Relations</h4>
+                <blockquote>The strength to change what I can, the inability to accept what I can't and the incapacity to tell the difference.</blockquote>
+            </figcaption>
+        </figure>
+
+    </div>
+
 
     <script>
+
         document.addEventListener('DOMContentLoaded', function () {
             var checkIn = document.getElementById('id_check_in');
             var checkOut = document.getElementById('id_check_out');

@@ -82,7 +82,7 @@ def book_room(request):
                 pass
             else:
                 messages.warning(request,"Sorry This Room is unavailable for Booking")
-                return redirect("book_room_page")
+                return redirect("my-booking")
             
         current_user = request.user
         total_person = int(request.POST['person'])
@@ -127,14 +127,19 @@ def edit_booking(request, booking_id):
     Requires the user to be logged in.
     """
     booking = get_object_or_404(Booking, id=booking_id)
-
+    print(f"Editing booking for ID: {booking_id}")
     if request.method == "POST":
         form = BookingForm(request.POST, instance=booking)
         if form.is_valid():
+            print(form.errors)
             form.save()
             messages.success(request, "Booking updated successfully")
+            print("Booking updated successfully")
             return redirect("my-booking")
+        else:
+            print(form.errors)    
     else:
+        print('form is not valid')
         form = BookingForm(instance=booking)
     
     return render(request, "edit_booking.html", {"form": form, "booking": booking})
@@ -172,3 +177,9 @@ def contact(request):
 def success_view(request):
     name = request.session.get('user_name', 'Guest')
     return render(request, 'success.html', {'user_name': name})
+
+def about_page(request):
+    return render(request, 'about_page.html')
+
+def services_page(request):
+    return render(request, 'services_page.html')

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% block title %}Edit Booking{% endblock title %}
+{% block title %}Edit Booking
+{% endblock title %}
 {% block content %}
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -11,21 +12,25 @@
                     <div class="card-body">
                         <form method="post">
                             {% csrf_token %}
-                            <div class="form-group mb-3">
-                                <label for="check_in" class="form-label">Check-in:</label>
-                                <input type="date" class="form-control" id="check_in" name="check_in" value="{{ booking.check_in|date:'Y-m-d' }}" required>
-                            </div>
-                            <div class="form-group mb-3">
-                                <label for="check_out" class="form-label">Check-out:</label>
-                                <input type="date" class="form-control" id="check_out" name="check_out" value="{{ booking.check_out|date:'Y-m-d' }}" required>
-                            </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-primary">Update</button>
-                            </div>
-                        </form>
+                            <input type="hidden" name="room" value="{{ booking.room.id }}">
+
+                                {# Hidden field for the room ID #}
+                                <div class="form-group mb-3">
+                                    <label for="check_in" class="form-label">Check-in:</label>
+                                    {{ form.check_in }}
+                                </div>
+                                <div class="form-group mb-3">
+                                    <label for="check_out" class="form-label">Check-out:</label>
+                                    {{ form.check_out }}
+                                </div>
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-{% endblock content %}
+    {% endblock content %}
+

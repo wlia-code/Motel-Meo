@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section id="about" class="about-section py-5">
+        <div class="container">
+            <h2 class="text-center">About Motel Meo</h2>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <p>Motel Meo offers affordable and comfortable accommodations for travelers seeking rest and relaxation. We are committed to:</p>
+                    <ul>
+                        <li>Clean and well-maintained rooms</li>
+                        <li>Friendly and helpful service</li>
+                        <li>Creating a welcoming atmosphere</li>
+                    </ul>
+                    <p>From the moment you step through our doors, you'll feel at ease. Book your stay today and experience the Motel Meo difference!</p>
+                    <a href="{% url 'home-page' %}" class="btn btn-primary">Book Your Stay Today</a>
+
+                </div>
+            </div>
+        </section>
+    {% endblock content %}

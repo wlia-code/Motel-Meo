@@ -10,8 +10,6 @@
                     <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
-                                <th>User</th>
-                                <th>Room</th>
                                 <th>Location</th>
                                 <th>Person</th>
                                 <th>Check-in</th>
@@ -23,8 +21,6 @@
                         <tbody>
                             {% for booking in bookings %}
                                 <tr>
-                                    <td>{{ booking.customer.username }}</td>
-                                    <td>{{ booking.room.room_no }}</td>
                                     <td>{{ booking.room.hotel.location }}</td>
                                     <td>{{ booking.room.capacity }}</td>
                                     <td>{{ booking.check_in|date:'M d, Y' }}</td>
@@ -47,4 +43,3 @@
         </div>
     </div>
 {% endblock content %}
-

@@ -10,3 +10,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+
+window.onload = function() {
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementById('check_in').setAttribute('min', today);
+    document.getElementById('check_out').setAttribute('min', today);
+}
+

@@ -1,6 +1,6 @@
 from django import forms
 from .models import Hotel,Booking
-
+from django.utils import timezone
 class SearchForm(forms.Form):
     """
     Form for searching hotel rooms based on location, check-in date, check-out date, and capacity.
@@ -12,17 +12,28 @@ class SearchForm(forms.Form):
     )
     check_in = forms.DateField(
         label="Check-in Date", 
-        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'})
+        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'min': timezone.now().date()})
     )
     check_out = forms.DateField(
         label="Check-out Date", 
-        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control'})
+        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'min': timezone.now().date()})
     )
     capacity = forms.IntegerField(
         label="Capacity",
         min_value=0, 
         widget=forms.NumberInput(attrs={'class': 'form-control'})
     )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        check_in = cleaned_data.get('check_in')
+        check_out = cleaned_data.get('check_out')
+
+        if check_in and check_in < timezone.now().date():
+            self.add_error('check_in', 'Check-in date cannot be in the past.')
+
+        if check_out and check_out < timezone.now().date():
+            self.add_error('check_out', 'Check-out date cannot be in the past.')
 
 
 class UserRegistrationForm(forms.Form):
@@ -38,9 +49,22 @@ class BookingForm(forms.ModelForm):
         model = Booking
         fields = ['room', 'check_in', 'check_out']
         widgets = {
-            'check_in': forms.DateInput(attrs={'type': 'date'}),
-            'check_out': forms.DateInput(attrs={'type': 'date'}),
+            'check_in': forms.DateInput(attrs={'type': 'date', 'min': timezone.now().date()}),
+            'check_out': forms.DateInput(attrs={'type': 'date', 'min': timezone.now().date()}),
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        check_in = cleaned_data.get('check_in')
+        check_out = cleaned_data.get('check_out')
+
+        if check_in and check_in < timezone.now().date() and 'check_in' in self.changed_data:
+            self.add_error('check_in', 'Check-in date cannot be in the past.')
+
+        if check_out and check_out < timezone.now().date() and 'check_out' in self.changed_data:
+            self.add_error('check_out', 'Check-out date cannot be in the past.')
+
+
 
 class ContactForm(forms.Form):
     name = forms.CharField(label='Your name', max_length=100)
