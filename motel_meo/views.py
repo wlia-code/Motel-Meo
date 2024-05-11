@@ -8,14 +8,23 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 import datetime
 from django.shortcuts import get_object_or_404
+from django.core.mail import send_mail
 
 def home(request):
+    """
+    This function renders the home page of the website.
+    It fetches all the distinct locations of the hotels from the database and passes them to the template.
+    """
     all_locations = Hotel.objects.values_list('location', 'id').distinct().order_by('location')
     form = SearchForm()
     context = {'all_locations': all_locations, 'form': form}
     return render(request, 'index.html', context)
 
 def search(request):
+    """
+    This function handles the search functionality of the website.
+    It fetches the available rooms based on the user's search criteria and passes them to the template.
+    """
     available_rooms = None
     if request.method == "POST":
         form = SearchForm(request.POST)
@@ -51,7 +60,6 @@ def search(request):
     return render(request, 'search_results.html', context)
 
 
-
 @login_required
 def book_room_page(request):
     """
@@ -60,7 +68,7 @@ def book_room_page(request):
     Renders the book room page with details of the selected room.
     """
     room_id = request.GET.get('roomid')
-    if room_id is None:
+    if room_id is None or room_id == '':
         return HttpResponse("Room ID is missing.")
     try:
         room = Room.objects.get(id=int(room_id))
@@ -178,11 +186,21 @@ def contact(request):
         return render(request, 'contact.html', {'form': form})
 
 def success_view(request):
+    """
+    This function renders the success page of the website.
+    It displays a success message to the user after a successful form submission.
+    """
     name = request.session.get('user_name', 'Guest')
     return render(request, 'success.html', {'user_name': name})
 
 def about_page(request):
+    """
+    This function renders the about page of the website.
+    """
     return render(request, 'about_page.html')
 
 def services_page(request):
+    """
+    This function renders the services page of the website.
+    """
     return render(request,'services_page.html')

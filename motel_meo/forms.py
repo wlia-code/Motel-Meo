@@ -1,6 +1,8 @@
 from django import forms
 from .models import Hotel,Booking
 from django.utils import timezone
+from django.core.mail import send_mail
+from django.core.exceptions import ImproperlyConfigured
 class SearchForm(forms.Form):
     """
     Form for searching hotel rooms based on location, check-in date, check-out date, and capacity.
@@ -49,6 +51,11 @@ class UserRegistrationForm(forms.Form):
     password2 = forms.CharField(widget=forms.PasswordInput)
 
 class BookingForm(forms.ModelForm):
+    """
+    This is a ModelForm for the Booking model.
+    It includes fields for room, check-in date, and check-out date.
+    The check-in and check-out fields are date input fields with a minimum value of the current date.
+    """
     class Meta:
         model = Booking
         fields = ['room', 'check_in', 'check_out']
