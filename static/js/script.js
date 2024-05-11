@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var checkIn = document.getElementById('check_in');
     var checkOut = document.getElementById('check_out');
 
@@ -17,4 +17,3 @@ window.onload = function() {
     document.getElementById('check_in').setAttribute('min', today);
     document.getElementById('check_out').setAttribute('min', today);
 }
-

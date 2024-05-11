@@ -18,7 +18,7 @@
                         now.{% endblocktrans %}
                     </p>
                 </div>
-
+            
                 <form class="login" method="POST" action="{% url 'account_login' %}">
                     {% csrf_token %}
                     {{ form | crispy }}
@@ -34,6 +34,7 @@
                             </button>
                         </div>
                     </form>
+                    
                 </div>
             </div>
         </div>

@@ -15,7 +15,7 @@
     <!-- Booking form section -->
     <section class="container-fluid my-4 py-5" id="search">
         <h1 class="book-title">Book Now</h1>
-        <form method="post" class="row g-3">
+        <form method="post" class="row g-3" action="{% url 'search-page' %}">
             {% csrf_token %}
             <!-- Location input -->
             <div class="col-md-3">
@@ -43,41 +43,7 @@
             </div>
         </form>
         <!-- Display available rooms if any -->
-        {% if available_rooms %}
-            <div class="row mt-3">
-                <div class="col-md-12">
-                    <h2>Available Rooms:</h2>
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Hotel Name</th>
-                                    <th>Room Type</th>
-                                    <th>Price</th>
-                                    <th>Capacity</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for room in available_rooms %}
-                                    <tr>
-                                        <td>{{ room.hotel.name }}</td>
-                                        <td>{{ room.get_room_type_display }}</td>
-                                        <td>${{ room.price }}</td>
-                                        <td>{{ room.capacity }}</td>
-                                        <td>
-                                            <a href="{% url 'book-room-page' %}?roomid={{ room.id }}" aria-label="Book room at {{ room.hotel.name }}">
-                                                <button class="btn btn-info">Book Now</button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        {% endif %}
+   
     </section>
 
     <!-- Room options section -->
@@ -131,7 +97,7 @@
     </section>
 
     <!-- JavaScript to handle date inputs -->
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function () {
             var checkIn = document.getElementById('id_check_in');
             var checkOut = document.getElementById('id_check_out');
@@ -144,5 +110,5 @@
                 }
             });
         });
-    </script>
+    </script> -->
 {% endblock %}

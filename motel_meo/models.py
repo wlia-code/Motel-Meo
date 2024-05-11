@@ -63,6 +63,7 @@ class Booking(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE)
     customer = models.ForeignKey(User, on_delete=models.CASCADE)
     booking_id = models.CharField(max_length=155, default="null")
+    person = models.IntegerField(default=1)  # Default value set to 1
 
     def __str__(self):
         return f"Customer: {self.customer.username} -- Booking ID: {self.booking_id}"

@@ -1,36 +1,44 @@
 {% extends 'base.html' %}
-{% block title %}Edit Booking
-{% endblock title %}
+
 {% block content %}
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="text-center text-success">Edit Booking</h3>
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="text-center">Edit Booking</h3>
                     </div>
                     <div class="card-body">
-                        <form method="post">
-                            {% csrf_token %}
-                            <input type="hidden" name="room" value="{{ booking.room.id }}">
-
-                                {# Hidden field for the room ID #}
-                                <div class="form-group mb-3">
-                                    <label for="check_in" class="form-label">Check-in:</label>
-                                    {{ form.check_in }}
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label for="check_out" class="form-label">Check-out:</label>
-                                    {{ form.check_out }}
-                                </div>
-                                <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary">Update</button>
-                                </div>
-                            </form>
+                        <h5 class="card-title">Booking Details</h5>
+                        <p class="card-text">
+                            <strong>Hotel:</strong>
+                            {{ booking.room.hotel.name }}</p>
+                        <p class="card-text">
+                            <strong>Room Type:</strong>
+                            {{ booking.room.get_room_type_display }}</p>
+                        <p class="card-text">
+                            <strong>Capacity:</strong>
+                            {{ booking.room.capacity }}</p>
+                        <hr>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="room" value="{{ booking.room.id }}">
+                                    <div class="form-group mb-3">
+                                        <label for="check_in" class="form-label">Check-in:</label>
+                                        {{ form.check_in }}
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <label for="check_out" class="form-label">Check-out:</label>
+                                        {{ form.check_out }}
+                                    </div>
+                                    <div class="d-grid gap-2">
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    {% endblock content %}
+        {% endblock content %}
 

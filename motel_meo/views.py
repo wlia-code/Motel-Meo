@@ -2,21 +2,20 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Hotel, Room, Booking
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .forms import SearchForm, UserRegistrationForm,BookingForm
+from .forms import SearchForm, UserRegistrationForm,BookingForm,ContactForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 import datetime
 from django.shortcuts import get_object_or_404
-from .forms import ContactForm
-
 
 def home(request):
-    """
-    View function for the home page.
-    Renders the home page with a search form and available rooms.
-    """
     all_locations = Hotel.objects.values_list('location', 'id').distinct().order_by('location')
+    form = SearchForm()
+    context = {'all_locations': all_locations, 'form': form}
+    return render(request, 'index.html', context)
+
+def search(request):
     available_rooms = None
     if request.method == "POST":
         form = SearchForm(request.POST)
@@ -26,6 +25,9 @@ def home(request):
                 check_in = form.cleaned_data['check_in']
                 check_out = form.cleaned_data['check_out']
                 capacity = form.cleaned_data['capacity']
+                request.session['search_check_in'] = check_in.strftime("%Y-%m-%d")
+                request.session['search_check_out'] = check_out.strftime("%Y-%m-%d")
+              
 
                 reserved_room_ids = Booking.objects.filter(
                     room__hotel=search_location,
@@ -41,12 +43,13 @@ def home(request):
                 if not available_rooms:
                     messages.warning(request, "Sorry, no rooms are available during this time period.")
             except Exception as e:
-                messages.error(request, f"An error occurred: {str(e)}")
+                print( f"An error occurred: {str(e)}")
     else:
         form = SearchForm()
 
-    context = {'all_locations': all_locations, 'form': form, 'available_rooms': available_rooms}
-    return render(request, 'index.html', context)
+    context = {'form': form, 'available_rooms': available_rooms}
+    return render(request, 'search_results.html', context)
+
 
 
 @login_required
@@ -61,7 +64,9 @@ def book_room_page(request):
         return HttpResponse("Room ID is missing.")
     try:
         room = Room.objects.get(id=int(room_id))
-        return render(request, 'bookroom.html', {'room': room})
+        check_in = request.session.get('search_check_in')
+        check_out = request.session.get('search_check_out')
+        return render(request, 'bookroom.html', {'room': room, 'check_in': check_in, 'check_out': check_out})
     except Room.DoesNotExist:
         return HttpResponse("Room not found.")
 
@@ -82,7 +87,7 @@ def book_room(request):
                 pass
             else:
                 messages.warning(request,"Sorry This Room is unavailable for Booking")
-                return redirect("my-booking")
+                
             
         current_user = request.user
         total_person = int(request.POST['person'])
@@ -127,22 +132,18 @@ def edit_booking(request, booking_id):
     Requires the user to be logged in.
     """
     booking = get_object_or_404(Booking, id=booking_id)
-    print(f"Editing booking for ID: {booking_id}")
     if request.method == "POST":
         form = BookingForm(request.POST, instance=booking)
         if form.is_valid():
-            print(form.errors)
             form.save()
             messages.success(request, "Booking updated successfully")
             print("Booking updated successfully")
-            return redirect("my-booking")
-        else:
-            print(form.errors)    
+            return redirect("my-booking")  
     else:
-        print('form is not valid')
         form = BookingForm(instance=booking)
     
     return render(request, "edit_booking.html", {"form": form, "booking": booking})
+
 
 
 @login_required
@@ -152,9 +153,11 @@ def delete_booking(request, booking_id):
     Requires the user to be logged in.
     """
     booking = get_object_or_404(Booking, id=booking_id)
-    booking.delete()
-    messages.success(request, "Booking deleted successfully")
-    return redirect("my-booking")
+    if request.method == 'POST':
+        booking.delete()
+        messages.success(request, "Booking deleted successfully")
+        return redirect("my-booking")
+    return render(request, 'confirm_delete.html', {'booking': booking})
 
 
 def contact(request):
@@ -182,4 +185,4 @@ def about_page(request):
     return render(request, 'about_page.html')
 
 def services_page(request):
-    return render(request, 'services_page.html')
+    return render(request,'services_page.html')

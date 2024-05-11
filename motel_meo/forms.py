@@ -35,6 +35,10 @@ class SearchForm(forms.Form):
         if check_out and check_out < timezone.now().date():
             self.add_error('check_out', 'Check-out date cannot be in the past.')
 
+        if check_in and check_out and check_in > check_out:
+            self.add_error('check_out', 'Check-out date cannot be before the check-in date.')
+
+
 
 class UserRegistrationForm(forms.Form):
     """

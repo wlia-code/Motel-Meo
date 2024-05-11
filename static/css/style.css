@@ -163,7 +163,7 @@ footer {
   font-size: 40px;
   text-align: center;
   margin-top: 40px;
-  background-color: #EBEBEB;
+  background-color: #ebebeb;
   color: black;
 }
 .book-title {
@@ -172,8 +172,8 @@ footer {
   margin-bottom: 40px;
 }
 
-.book-title::after,
-.hero-title::after {
+.book-title: :after,
+.hero-title: :after {
   content: "";
   display: block;
   width: 10%;
@@ -192,7 +192,7 @@ footer {
 }
 
 .i1 {
-  background-image: url("../images/room-1.jpg");
+  background-image: url("https://res.cloudinary.com/dn2nul7ux/image/upload/v1715065506/icon_bdg2be.png");
 }
 .i2 {
   background-image: url("../images/room-3.jpg");
@@ -317,8 +317,8 @@ footer {
   font-size: 1.5em;
   margin-bottom: 30px;
   animation: fadeInUp 2s ease-in-out 0.5s;
-  color:#8A8A8A;
-  background-color:#F5F5F5;
+  color: #8a8a8a;
+  background-color: #f5f5f5;
 }
 
 .hero-button {
@@ -326,7 +326,7 @@ footer {
   padding: 10px 20px;
   font-size: 1.2em;
   text-decoration: none;
-  color: #FCFCFC;
+  color: #fcfcfc;
   background-color: #545454;
   border-radius: 5px;
   transition: background-color 2s ease-in-out;

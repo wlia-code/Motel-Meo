@@ -28,10 +28,11 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['localhost',
-                    'https://motel-meo-2bd41eb1b83a.herokuapp.com/','motel-meo-2bd41eb1b83a.herokuapp.com']
+                    'https://motel-meo-2bd41eb1b83a.herokuapp.com/','motel-meo-2bd41eb1b83a.herokuapp.com',
+                    '8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu111.gitpod.io']
 
 CSRF_TRUSTED_ORIGINS = [
 
@@ -66,12 +67,11 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1  
 
-ACCOUNT_EMAIL_VERIFICATION = "none"  
 
 LOGIN_REDIRECT_URL = "/"
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
+ACCOUNT_EMAIL_REQUIRED = True
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -169,10 +169,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Email Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = '/tmp/app-emails'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
+EMAIL_PORT = 465
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'wasimalrawas9@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')

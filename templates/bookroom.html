@@ -8,9 +8,11 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-center">Book Room!</h2>
+                </div>
                 <div class="card-body">
-                    <h1 class="text-center mb-4">Book Room!</h1>
                     <form action="{% url 'bookroom' %}" method="POST">
                         {% csrf_token %}
                         <div class="form-group">
@@ -31,14 +33,14 @@
                             <label for="person">Capacity:</label>
                             <input type="number" class="form-control" id="person" name="person" min="1" max="{{ room.capacity }}" required="required" value="{{ room.capacity }}">
                         </div>
-                        <div class="form-group">
-                            <label for="check_in">Check-in:</label>
-                            <input type="date" class="form-control" id="check_in" name="check_in" min="{{ todays_date }}" max="{{ max_date }}" required="required">
-                        </div>
-                        <div class="form-group">
-                            <label for="check_out">Check-out:</label>
-                            <input type="date" class="form-control" id="check_out" name="check_out" min="{{ tomorrow }}" max="{{ max_date }}" required="required">
-                        </div>
+<div class="form-group">
+    <label for="check_in">Check-in:</label>
+    <input type="date" class="form-control" id="check_in" name="check_in" min="{{ todays_date }}" max="{{ max_date }}" required="required" value="{{ check_in }}"></div>
+    <div class="form-group">
+        <label for="check_out">Check-out:</label>
+        <input type="date" class="form-control" id="check_out" name="check_out" min="{{ tomorrow }}" max="{{ max_date }}" required="required" value="{{ check_out }}"></div>
+
+
                         <div class="form-group">
                             <label for="roomtype">Room Type:</label>
                             <input type="text" class="form-control" id="roomtype" name="roomtype" disabled="disabled" value="{{ room.get_room_type_display }}">
@@ -47,7 +49,7 @@
                             <label for="price">Price:</label>
                             <input type="number" class="form-control" id="price" name="price" disabled="disabled" value="{{ room.price }}">
                         </div>
-                        <div class="text-center">
+                        <div class="d-grid gap-2">
                             {% if user.is_authenticated %}
                                 <button type="submit" class="btn btn-primary">Book Now</button>
                             {% else %}
