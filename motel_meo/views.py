@@ -171,15 +171,14 @@ def delete_booking(request, booking_id):
         messages.success(request, "Booking deleted successfully")
         return redirect("my-booking")
     return render(request, 'confirm_delete.html', {'booking': booking})
-'''
 @login_required
-def profile_view(request):
+def account_profile(request):
     """
-    View function for the user profile page.
-    Requires the user to be logged in.
+    View function for redirecting from account/profile to book_room_page.
     """
-    return redirect('book-room-page')
-'''
+    room_id = request.user.room.id  # Get the room id from the user
+    return redirect('book-room-page', roomid=room_id)
+
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
