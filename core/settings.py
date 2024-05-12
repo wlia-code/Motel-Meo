@@ -65,12 +65,12 @@ AUTHENTICATION_BACKENDS = [
     "allauth.account.auth_backends.AuthenticationBackend",  
 ]
 
-SITE_ID = 1  
-
+SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 ACCOUNT_EMAIL_REQUIRED = True
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -169,6 +169,8 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Email Configuration
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = '/tmp/app-emails'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
 EMAIL_USE_TLS = True

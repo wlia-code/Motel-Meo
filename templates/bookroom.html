@@ -50,11 +50,7 @@
                             <input type="number" class="form-control" id="price" name="price" disabled="disabled" value="{{ room.price }}">
                         </div>
                         <div class="d-grid gap-2">
-                            {% if user.is_authenticated %}
                                 <button type="submit" class="btn btn-primary">Book Now</button>
-                            {% else %}
-                                <a href="{% url 'account_login' %}?next={% url 'bookroom' %}" class="btn btn-warning">Login to Book</a>
-                            {% endif %}
                         </div>
                         <input type="hidden" name="room_id" value="{{ room.id }}">
                     </form>

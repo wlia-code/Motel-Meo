@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block head_title %}
+    {% trans "My Profile" %}
+{% endblock head_title %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center mb-4 pb-4">
+            <div class="col-lg-6 card p-4 shadow">
+
+                <div class="text-center mb-4">
+                    <h1 class="h3 mb-3 font-weight-normal">{% trans "My Profile" %}</h1>
+                    <p class="lead">
+                        {% blocktrans %}Welcome to your profile page{% endblocktrans %}
+                    </p>
+                </div>
+                
+                <div>
+                    <p><strong>{% trans "Username:" %}</strong> {{ user.username }}</p>
+                    <p><strong>{% trans "Email:" %}</strong> {{ user.email }}</p>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

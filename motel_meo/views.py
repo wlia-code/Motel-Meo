@@ -7,8 +7,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 import datetime
+from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
+from django.contrib.auth import authenticate, login
+
 
 def home(request):
     """
@@ -51,6 +54,7 @@ def search(request):
 
                 if not available_rooms:
                     messages.warning(request, "Sorry, no rooms are available during this time period.")
+
             except Exception as e:
                 print( f"An error occurred: {str(e)}")
     else:
@@ -58,6 +62,8 @@ def search(request):
 
     context = {'form': form, 'available_rooms': available_rooms}
     return render(request, 'search_results.html', context)
+
+
 
 
 @login_required
@@ -100,7 +106,6 @@ def book_room(request):
         current_user = request.user
         total_person = int(request.POST['person'])
         booking_id = str(room_id) + str(datetime.datetime.now())
-
         booking = Booking()
         room_object = Room.objects.all().get(id=room_id)
         room_object.status = '2'
@@ -166,8 +171,15 @@ def delete_booking(request, booking_id):
         messages.success(request, "Booking deleted successfully")
         return redirect("my-booking")
     return render(request, 'confirm_delete.html', {'booking': booking})
-
-
+'''
+@login_required
+def profile_view(request):
+    """
+    View function for the user profile page.
+    Requires the user to be logged in.
+    """
+    return redirect('book-room-page')
+'''
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -204,3 +216,4 @@ def services_page(request):
     This function renders the services page of the website.
     """
     return render(request,'services_page.html')
+

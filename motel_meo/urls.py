@@ -1,7 +1,12 @@
 from django.urls import path
 from .views import home , book_room_page, book_room, my_booking, edit_booking, delete_booking, contact, success_view,about_page, services_page, search
+from django.contrib.auth.views import LoginView
+
 urlpatterns = [
     path("", home, name="home-page"),
+    path('accounts/login/', LoginView.as_view(redirect_authenticated_user=False,template_name='account/login.html'), name='custom-login'),
+    # path('login-redirect/', login_redirect, name='login-redirect'),
+    # path('accounts/profile/', profile_view, name='profile'),
     path("search/", search, name="search-page"),
     path("book-room/", book_room_page, name="book-room-page"),
     path("book-room/book/",book_room,name="bookroom"),

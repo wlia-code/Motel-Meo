@@ -7,38 +7,44 @@
             <div class="col-lg-12 col-md-12 col-sm-12">
                 <h3 class="text-center text-success mb-4">My Bookings</h3>
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Location</th>
-                                <th>Person</th>
-                                <th>Check-in</th>
-                                <th>Check-out</th>
-                                <th>Price</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for booking in bookings %}
+                    {% if bookings %}
+                        <table class="table table-bordered table-striped">
+                            <thead class="thead-dark">
                                 <tr>
-                                    <td>{{ booking.room.hotel.location }}</td>
-                                    <td>{{ booking.room.capacity }}</td>
-                                    <td>{{ booking.check_in|date:'M d, Y' }}</td>
-                                    <td>{{ booking.check_out|date:'M d, Y' }}</td>
-                                    <td>${{ booking.room.price }}</td>
-                                    <td>
-                                        <a href="{% url 'edit_booking' booking.id %}" class="btn btn-primary btn-sm">Edit</a>
-                                        <!-- Confirmation dialog before deleting a booking -->
-                                        <a href="{% url 'delete_booking' booking.id %}" class="btn btn-danger btn-sm">Delete</a>
-                                    </td>
+                                    <th>Location</th>
+                                    <th>Person</th>
+                                    <th>Check-in</th>
+                                    <th>Check-out</th>
+                                    <th>Price</th>
+                                    <th>Action</th>
                                 </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {% for booking in bookings %}
+                                    <tr>
+                                        <td>{{ booking.room.hotel.location }}</td>
+                                        <td>{{ booking.room.capacity }}</td>
+                                        <td>{{ booking.check_in|date:'M d, Y' }}</td>
+                                        <td>{{ booking.check_out|date:'M d, Y' }}</td>
+                                        <td>${{ booking.room.price }}</td>
+                                        <td>
+                                            <a href="{% url 'edit_booking' booking.id %}" class="btn btn-primary btn-sm">Edit</a>
+                                            <!-- Confirmation dialog before deleting a booking -->
+                                            <a href="{% url 'delete_booking' booking.id %}" class="btn btn-danger btn-sm">Delete</a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p class="text-center text-warning">No bookings found.</p>
+                        <div class="text-center">
+                            <a href="{% url 'home-page' %}" class="btn btn-primary">Go back to home</a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
-    
 {% endblock content %}
 

@@ -3,6 +3,8 @@ from .models import Hotel,Booking
 from django.utils import timezone
 from django.core.mail import send_mail
 from django.core.exceptions import ImproperlyConfigured
+
+
 class SearchForm(forms.Form):
     """
     Form for searching hotel rooms based on location, check-in date, check-out date, and capacity.

@@ -13,8 +13,8 @@
     </header>
 
     <!-- Booking form section -->
-    <section class="container-fluid my-4 py-5" id="search">
-        <h1 class="book-title">Book Now</h1>
+    <section class="container-fluid my-4 py-2" id="search">
+        <h2 class="book-title">Book Now</h2>
         <form method="post" class="row g-3" action="{% url 'search-page' %}">
             {% csrf_token %}
             <!-- Location input -->
@@ -43,72 +43,58 @@
             </div>
         </form>
         <!-- Display available rooms if any -->
-   
+
     </section>
 
     <!-- Room options section -->
     <section id="rooms">
-        <h1 class="hero-title">Our Rooms</h1>
+        <h2 class="hero-title">Our Rooms</h2>
         <!-- Single room details -->
-        <div class="wrapper">
-            <h1>Single room</h1>
-            <div class="image i1"></div>
-            <div class="details">
-                <h1>
-                    <em>Comfortable</em>
-                </h1>
-                <h2>For one person</h2>
-                <p>Nice view to your swimming pool</p>
+        <div class="wrapper-container">
+            <div class="wrapper">
+                <h3>Single room</h3>
+                <div class="image i1"></div>
+                <div class="details">
+                    <p>
+                        <em>Comfortable</em>
+                    </p>
+                    <h3>For one person</h3>
+                    <p>Nice view to your swimming pool</p>
+                </div>
+                <button class="btn-hover color-9">
+                    <a href="#search">Book Now</a>
+                </button>
             </div>
-            <button class="btn-hover color-9">
-                <a href="#search">Book Now</a>
-            </button>
-        </div>
-        <!-- Double room details -->
-        <div class="wrapper">
-            <h1>Double Room</h1>
-            <div class="image i2"></div>
-            <div class="details">
-                <h1>
-                    <em>Comfortable</em>
-                </h1>
-                <h2>For two people</h2>
-                <p>Nice view to your swimming pool</p>
+            <!-- Double room details -->
+            <div class="wrapper">
+                <h3>Double Room</h3>
+                <div class="image i2"></div>
+                <div class="details">
+                    <p>
+                        <em>Comfortable</em>
+                    </p>
+                    <p>For two people</p>
+                    <p>Nice view to your swimming pool</p>
+                </div>
+                <button class="btn-hover color-9">
+                    <a href="#search">Book Now</a>
+                </button>
             </div>
-            <button class="btn-hover color-9">
-                <a href="#search">Book Now</a>
-            </button>
-        </div>
-        <!-- Suite details -->
-        <div class="wrapper">
-            <h1>Suite</h1>
-            <div class="image i3"></div>
-            <div class="details">
-                <h1>
-                    <em>Comfortable</em>
-                </h1>
-                <h2>For family</h2>
-                <p>Nice view to your swimming pool</p>
+            <!-- Suite details -->
+            <div class="wrapper">
+                <h3>Suite</h3>
+                <div class="image i3"></div>
+                <div class="details">
+                    <p>
+                        <em>Comfortable</em>
+                    </p>
+                    <p>For family</p>
+                    <p>Nice view to your swimming pool</p>
+                </div>
+                <button class="btn-hover color-9">
+                    <a href="#search">Book Now</a>
+                </button>
             </div>
-            <button class="btn-hover color-9">
-                <a href="#search">Book Now</a>
-            </button>
         </div>
     </section>
-
-    <!-- JavaScript to handle date inputs -->
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var checkIn = document.getElementById('id_check_in');
-            var checkOut = document.getElementById('id_check_out');
-
-            checkIn.addEventListener('change', function () {
-                var minCheckOutDate = new Date(checkIn.value);
-                checkOut.min = minCheckOutDate.toISOString().split('T')[0];
-                if (checkOut.value < checkIn.value) {
-                    checkOut.value = checkIn.value;
-                }
-            });
-        });
-    </script> -->
 {% endblock %}
