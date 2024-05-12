@@ -73,7 +73,7 @@
         </header>
 
         {% if messages %}
-            <div class="messages text-center">
+            <div class="messages text-center fade-out">
                 {% for message in messages %}
                     <h3 {% if message.tags %} class="text-muted {{ message.tags }}" {% endif %}>{{ message }}</h3>
                 {% endfor %}

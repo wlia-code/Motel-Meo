@@ -316,3 +316,11 @@ footer {
     transform: translateY(0);
   }
 }
+.fade-out {
+    animation: fade-out 5s forwards;
+}
+
+@keyframes fade-out {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}

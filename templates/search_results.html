@@ -40,11 +40,7 @@
                                                 <td>${{ room.price }}</td>
                                                 <td>{{ room.capacity }}</td>
                                                 <td>
-                                                    {% if user.is_authenticated %}
-                                                        <a href="{% url 'book-room-page' %}?roomid={{ room.id }}" class="btn btn-info" aria-label="Book room at {{ room.hotel.name }}">Book Now</a>
-                                                    {% else %}
-                                                        <a href="{% url 'custom-login' %}?next={% url 'book-room-page' %}?roomid={{ room.id }}" class="btn btn-info" aria-label="Login to book room at {{ room.hotel.name }}">Book Now</a>
-                                                    {% endif %}
+                                                    <a href="{% url 'book-room-page' %}?roomid={{ room.id }}" class="btn btn-info" aria-label="Book room at {{ room.hotel.name }}">Book Now</a>
                                                 </td>
                                             </tr>
                                         {% endfor %}

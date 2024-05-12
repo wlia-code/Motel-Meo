@@ -1,16 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Hotel, Room, Booking
 from django.contrib import messages
 from django.contrib.auth.models import User
+from .models import Hotel, Room, Booking
 from .forms import SearchForm, UserRegistrationForm,BookingForm,ContactForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 import datetime
 from django.urls import reverse
-from django.shortcuts import get_object_or_404
 from django.core.mail import send_mail
-from django.contrib.auth import authenticate, login
+
 
 
 def home(request):
@@ -171,13 +170,7 @@ def delete_booking(request, booking_id):
         messages.success(request, "Booking deleted successfully")
         return redirect("my-booking")
     return render(request, 'confirm_delete.html', {'booking': booking})
-@login_required
-def account_profile(request):
-    """
-    View function for redirecting from account/profile to book_room_page.
-    """
-    room_id = request.user.room.id  # Get the room id from the user
-    return redirect('book-room-page', roomid=room_id)
+
 
 def contact(request):
     if request.method == 'POST':
