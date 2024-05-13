@@ -1,20 +1,49 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <header class="hero about-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">About Motel Meo</h1>
+        </div>
+    </header>
     <section id="about" class="about-section py-5" aria-label="About Motel Meo">
+        <div class="container text-center">
+            <h3>Motel Meo offers affordable and comfortable accommodations for travelers seeking rest and relaxation. We are committed to:
+            </h3>
+            <div class="row mt-4 align-items-center justify-content-center text-center">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://res.cloudinary.com/dn2nul7ux/image/upload/v1715527990/room-1_tkneaa.webp" class="card-img-top object-fit-contain" alt="card iamge">
+                        <div class="card-body">
+                            <p class="card-text">Clean and well-maintained rooms</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://res.cloudinary.com/dn2nul7ux/image/upload/v1715527990/room-1_tkneaa.webp" class="card-img-top object-fit-contain" alt="card iamge">
 
-        <div class="container">
-            <h2 class="text-center">About Motel Meo</h2>
-            <div class="row mt-4">
-                <div class="col-md-6">
-                    <p>Motel Meo offers affordable and comfortable accommodations for travelers seeking rest and relaxation. We are committed to:</p>
-                    <ul>
-                        <li>Clean and well-maintained rooms</li>
-                        <li>Friendly and helpful service</li>
-                        <li>Creating a welcoming atmosphere</li>
-                    </ul>
+                        <div class="card-body">
+                            <p class="card-text">Friendly and helpful service</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="https://res.cloudinary.com/dn2nul7ux/image/upload/v1715527990/room-1_tkneaa.webp" class="card-img-top object-fit-contain" alt="card iamge">
+                        <div class="card-body">
+                            <p class="card-text">Creating a welcoming atmosphere</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 align-self-center mt-4">
                     <p>From the moment you step through our doors, you'll feel at ease. Book your stay today and experience the Motel Meo difference!</p>
-                    <a href="{% url 'home-page' %}" class="btn btn-primary">Book Your Stay Today</a>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary has-background-color" type="button">
+                            <a href="{% url 'home-page' %}" class="link-light link-underline link-underline-opacity-0">Book Your Stay Today</a>
+
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

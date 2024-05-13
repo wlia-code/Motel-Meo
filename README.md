@@ -1,5 +1,18 @@
 # Motel Meo
 
+## Table of Contents
+
+- [Project Description](#project-description)
+- [Features](#features)
+- [Strategy](#strategy)
+- [Installation & Usage](#installation--usage)
+- [Tools Used](#tools-used)
+- [Running the Tests](#running-the-tests)
+- [Built With](#built-with)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgments)
+- [Bugs Found and Fixed](#bugs-found-and-fixed)
+
 ## Project Description
 
 **Motel-Meo** is a comprehensive hotel management system designed for seamless management of hotel operations. This web-based application offers a robust suite of features to manage hotel accommodations, including room bookings, availability checks, and customer management.
@@ -102,9 +115,14 @@ Ensure that you have Python (version 3.7 or newer) installed on your system. If 
 
 ### Running the Application
 
-3. Install dependencies:
+1. Start the development server
    ```bash
-   pip install -r requirements.txt
+   python manage.py runserver
+
+1. Apply database migrations (create tables based on your models)
+   ```bash
+    python manage.py makemigrations
+    python manage.py migrate
 
 
 ## Tools Used

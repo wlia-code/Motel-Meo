@@ -11,6 +11,9 @@ body {
 .content {
   flex: 1;
 }
+.has-background-color{
+  background-color:#00486c;
+}
 .navbar {
   background-color: #00486c;
 }
@@ -106,6 +109,7 @@ footer {
     width: 100%;
   }
 }
+
 .wrapper:after {
   content: "";
   clear: both;
@@ -245,7 +249,10 @@ footer {
   align-items: center;
   justify-content: center;
 }
-
+.about-hero,
+.services-hero {
+  height: 30vh;
+}
 .hero:before {
   content: "";
   position: absolute;
@@ -290,11 +297,7 @@ footer {
 .hero-button:hover {
   background-color: #2980b9;
 }
-@media (min-width: 1024px) {
-  .wave {
-    margin-top: -75px;
-  }
-}
+
 .link {
   color: #00486c;
   text-decoration: none;

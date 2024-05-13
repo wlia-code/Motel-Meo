@@ -5,40 +5,35 @@
     {% trans "Sign In" %}
 {% endblock head_title %}
 {% block content %}
-    <div class="container mt-5">
-        <div class="row justify-content-center mb-4 pb-4">
-            <div class="col-lg-6 card p-4 shadow">
+    <section class="section p-2">
+        <div class="text-center mb-4">
+            <h1 class="h3 mb-3 font-weight-normal">{% trans "Sign In" %}</h1>
+            <p class="lead">
+                {% blocktrans %}Welcome back to Motel Meo. Log in to book and manage your bookings! If you haven't created an account yet,
 
-                <div class="text-center mb-4">
-                    <h1 class="h3 mb-3 font-weight-normal">{% trans "Sign In" %}</h1>
-                    <p class="lead">
-                        {% blocktrans %}Welcome back to Motel Meo. Log in to book and manage your bookings! If you haven't created an account yet,
+                <a class="link" href="{{ signup_url }}">sign up</a>
+                now.{% endblocktrans %}
+            </p>
+        </div>
+        <div class="container mt-5">
+            <div class="row justify-content-center mb-4 pb-4">
+                <div class="col-lg-6 card p-4 shadow">
 
-                        <a class="link" href="{{ signup_url }}">sign up</a>
-                        now.{% endblocktrans %}
-                    </p>
-                </div>
-                
-                <form class="login" method="POST" action="{% url 'account_login' %}">
-                    {% csrf_token %}
-                    {{ form | crispy }}
-                    {% if redirect_field_value %}
-                        <input type="hidden" name="{{ redirect_field_name }} " value="{{ redirect_field_value }}"/>
-                    {% endif %}
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Sign In" %}</button>
+
+                    <form class="login" method="POST" action="{% url 'account_login' %}">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                            {% if redirect_field_value %}
+                                <input type="hidden" name="{{ redirect_field_name }} " value="{{ redirect_field_value }}"/>
+                            {% endif %}
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans "Sign In" %}</button>
+                            </div>
+                        </form>
                     </div>
-                </form>
-
-                    
                 </div>
             </div>
-        </div>
-        <div class="wave">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#00486c" fill-opacity="1" d="M0,256L60,266.7C120,277,240,299,360,277.3C480,256,600,192,720,170.7C840,149,960,171,1080,165.3C1200,160,1320,128,1380,112L1440,96L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+        </section>
 
-            </svg>
-        </div>
 
     {% endblock content %}

@@ -30,7 +30,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost',
+ALLOWED_HOSTS = ['localhost', '8000-wliacode-motelmeo-yrw1ssbaeih.ws-us111.gitpod.io',
                     'https://motel-meo-2bd41eb1b83a.herokuapp.com/','motel-meo-2bd41eb1b83a.herokuapp.com',
                     '8000-wliacode-motelmeo-yrw1ssbaeih.ws-eu111.gitpod.io']
 

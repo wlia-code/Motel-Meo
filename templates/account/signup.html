@@ -6,65 +6,64 @@
 {% endblock %}
 {% block content %}
 
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-6 card p-4 shadow">
+<section class="section p-4">
+    <div class="text-center mb-4">
+        <h1 class="h3 mb-3 font-weight-normal">{% trans "Sign Up" %}</h1>
+        <p class="lead">
+            {% blocktrans %}
+                Welcome to Motel Meo! Sign up to book and manage your bookings.                                                                                                                                                                                                                                                                                                   Already have an account?
+                <a class="link" href="{{ login_url }}">Login</a>
 
-            <div class="text-center mb-4">
-                <h1 class="h3 mb-3 font-weight-normal">{% trans "Sign Up" %}</h1>
-                <p class="lead">
-                    {% blocktrans %}
-                        Welcome to Motel Meo! Sign up to book and manage your bookings.                                                                                                                                                                                                                                                                                                   Already have an account?
-                        <a class="link" href="{{ login_url }}">Login</a>
-
-                        instead.
-                        {% endblocktrans %}
-                    </p>
-                </div>
-
-                <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-                    {% csrf_token %}
-                    {{ form | crispy }}
-                        {{ form.media }}
-                        {% if redirect_field_value %}
-                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-                        {% endif %}
+                instead.
+                {% endblocktrans %}
+            </p>
+        </div>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6 card p-4 shadow">
 
 
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-lg btn-primary btn-block" type="submit">
-                                {% trans "Sign Up" %}
-                            </button>
+                    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                            {{ form.media }}
+                            {% if redirect_field_value %}
+                                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                            {% endif %}
 
-                        </div>
 
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-lg btn-primary btn-block" aria-label="Sign Up" type="submit">
 
-                    </form>
+                                    {% trans "Sign Up" %}
+                                </button>
 
-                    {% comment %}
-                        Display password validation messages only if the form has been submitted
-                                                                                                                                                                                                                                                                                                                                    or if the user has interacted with the password field
-                    {% endcomment %}
-                    {% if form.is_bound and form.password1.value %}
-                        {% if form.password1.errors %}
-                            <div class="mt-3">
-                                <ul class="alert alert-danger" role="alert">
-                                    {% for error in form.password1.errors %}
-                                        <li>{{ error }}</li>
-                                    {% endfor %}
-                                </ul>
                             </div>
+
+
+                        </form>
+
+                        {% comment %}
+                            Display password validation messages only if the form has been submitted
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                or if the user has interacted with the password field
+                        {% endcomment %}
+                        {% if form.is_bound and form.password1.value %}
+                            {% if form.password1.errors %}
+                                <div class="mt-3">
+                                    <ul class="alert alert-danger" role="alert">
+                                        {% for error in form.password1.errors %}
+                                            <li>{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
+                    </div>
                 </div>
+
             </div>
 
-        </div>
-        <div class="wave">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path fill="#00486c" fill-opacity="1" d="M0,256L60,266.7C120,277,240,299,360,277.3C480,256,600,192,720,170.7C840,149,960,171,1080,165.3C1200,160,1320,128,1380,112L1440,96L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+        </section>
 
-            </svg>
-        </div>
 
     {% endblock %}
