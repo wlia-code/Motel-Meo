@@ -11,11 +11,11 @@
             <a href="#rooms" class="hero-button" aria-label="Check our rooms">Check our rooms ⬇️</a>
         </div>
     </header>
-
     <!-- Booking form section -->
-    <section class="container-fluid my-4 py-2" id="search">
-        <h2 class="book-title">Book Now</h2>
-        <form method="post" class="row g-3" action="{% url 'search-page' %}">
+    <section class="container-fluid my-4 py-2" id="search" aria-labelledby="bookNowTitle">
+        <h2 id="bookNowTitle" class="book-title hero-title">Book Now</h2>
+
+        <form method="post" class="row g-3" action="{% url 'search-page' %}" aria-label="Hotel Booking Form">
             {% csrf_token %}
             <!-- Location input -->
             <div class="col-md-3">
@@ -39,12 +39,12 @@
             </div>
             <!-- Search button -->
             <div class="col-md-12 text-center my-5">
-                <button type="submit" class="btn btn-primary btn-lg">Search</button>
+                <button type="submit" class="btn btn-primary btn-lg" aria-label="Search for Available Rooms">Search</button>
             </div>
         </form>
         <!-- Display available rooms if any -->
-
     </section>
+
 
     <!-- Room options section -->
     <section id="rooms">
@@ -73,7 +73,7 @@
                     <p>
                         <em>Comfortable</em>
                     </p>
-                    <p>For two people</p>
+                    <h3>For two people</h3>
                     <p>Nice view to your swimming pool</p>
                 </div>
                 <button class="btn-hover color-9">
@@ -88,7 +88,7 @@
                     <p>
                         <em>Comfortable</em>
                     </p>
-                    <p>For family</p>
+                    <h3>For family</h3>
                     <p>Nice view to your swimming pool</p>
                 </div>
                 <button class="btn-hover color-9">

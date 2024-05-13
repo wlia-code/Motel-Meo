@@ -18,9 +18,6 @@ Each hotel can list several types of rooms, specifying details like room type (e
 
 Customers can book rooms based on their preferences, with features such as selecting check-in and check-out dates, viewing room types, and confirming bookings instantly
 
-### Customer Management
-
-Track customer details and their booking history, allowing for personalized services and promotions
 
 ## Strategy
 

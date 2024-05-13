@@ -23,50 +23,51 @@
     </head>
     <body>
         <header>
-            <nav class="navbar navbar-expand-lg navbar-dark">
+            <nav class="navbar navbar-expand-lg navbar-dark" aria-label="Main Navigation">
                 <div class="container px-4">
-                    <a class="navbar-brand" href="{% url 'home-page' %}">Motel Meo</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <a class="navbar-brand" href="{% url 'home-page' %}" aria-label="Motel Meo Home">Motel Meo</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation Menu">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ms-auto">
+                        <ul class="navbar-nav ms-auto" role="navigation">
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'home-page' %}">Home</a>
+                                <a class="nav-link" href="{% url 'home-page' %}" aria-label="Home Page">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'about_page' %}#about">About</a>
+                                <a class="nav-link" href="{% url 'about_page' %}#about" aria-label="About Us">About</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'services_page' %}">Services</a>
+                                <a class="nav-link" href="{% url 'services_page' %}" aria-label="Our Services">Services</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                                <a class="nav-link" href="{% url 'contact' %}" aria-label="Contact Us">Contact</a>
                             </li>
                             {% if user.is_authenticated %}
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="User Account Menu">
                                         {{ user.username }}
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="userDropdown">
                                         <li>
-                                            <a class="dropdown-item" href="{% url 'my-booking' %}">My Booking</a>
+                                            <a class="dropdown-item" href="{% url 'my-booking' %}" aria-label="View My Booking">My Booking</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="{% url 'account_change_password' %}">Change Password</a>
+                                            <a class="dropdown-item" href="{% url 'account_change_password' %}" aria-label="Change My Password">Change Password</a>
                                         </li>
-                                        <li><hr class="dropdown-divider"></li>
                                         <li>
-                                            <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+                                            <hr class="dropdown-divider"></li>
+                                        <li>
+                                            <a class="dropdown-item" href="{% url 'account_logout' %}" aria-label="Logout from Account">Logout</a>
                                         </li>
                                     </ul>
                                 </li>
                             {% else %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                                    <a class="nav-link" href="{% url 'account_signup' %}" aria-label="Register an Account">Register</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                                    <a class="nav-link" href="{% url 'account_login' %}" aria-label="Login to Account">Login</a>
                                 </li>
                             {% endif %}
                         </ul>
@@ -91,7 +92,6 @@
         {% endif %}
 
 
-
         <div class="container-fluid px-0"> {% block content %}{% endblock %}
             </div>
 
@@ -108,4 +108,3 @@
 
         </body>
     </html>
-

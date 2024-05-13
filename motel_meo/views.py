@@ -93,6 +93,22 @@ def book_room(request):
     if request.method =="POST":
         room_id = request.POST['room_id']
         room = Room.objects.all().get(id=room_id)
+        current_user = request.user
+
+        check_in_date = datetime.datetime.strptime(request.POST['check_in'], "%Y-%m-%d")
+        check_out_date = datetime.datetime.strptime(request.POST['check_out'], "%Y-%m-%d")
+
+        if check_in_date > check_out_date:
+            messages.warning(request,"Check-in date must be before check-out date.")
+            return HttpResponse("Check-in date must be before check-out date.")
+        
+        user_bookings = Booking.objects.filter(customer=current_user, room=room)
+        if user_bookings.exists():
+            messages.warning(request, "You have already booked this room.")
+            return redirect("my-booking")
+        
+
+        
         for booking in Booking.objects.all().filter(room = room):
             if str(booking.check_in) < str(request.POST['check_in']) and str(booking.check_out) < str(request.POST['check_out']):
                 pass
@@ -100,9 +116,8 @@ def book_room(request):
                 pass
             else:
                 messages.warning(request,"Sorry This Room is unavailable for Booking")
+     
                 
-            
-        current_user = request.user
         total_person = int(request.POST['person'])
         booking_id = str(room_id) + str(datetime.datetime.now())
         booking = Booking()
@@ -121,6 +136,7 @@ def book_room(request):
         return redirect("my-booking")
     else:
         return HttpResponse('Access Denied')
+
 
 @login_required
 def my_booking(request):
