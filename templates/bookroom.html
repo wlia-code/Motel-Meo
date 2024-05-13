@@ -1,10 +1,24 @@
 {% extends 'base.html' %}
-
+{% load tz %}
 {% block title %}
     Book Room
 {% endblock title %}
 
 {% block content %}
+
+{% if messages %}
+    <div class="messages text-center">
+        {% for message in messages %}
+            <div class="alert alert-danger alert-{{ message.tags }} mx-auto d-flex justify-content-between" role="alert" style="width: 50%;">
+                <div>{{ message }}</div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -13,7 +27,6 @@
                     <h2 class="text-center">Book Room!</h2>
                 </div>
                 <div class="card-body">
-                    
                     <form action="{% url 'bookroom' %}" method="POST">
                         {% csrf_token %}
                         <div class="form-group">
@@ -27,21 +40,21 @@
                         {% if user.is_authenticated %}
                             <div class="form-group">
                                 <label for="username">Username:</label>
-                                <input type="text" class="form-control" id="username" name="username" required="required" value="{{ request.user }}" readonly="readonly">
+                                <input type="text" class="form-control" id="username"  name="username" required="required" value="{{ request.user }}" readonly="readonly">
                             </div>
                         {% endif %}
                         <div class="form-group">
                             <label for="person">Capacity:</label>
-                            <input type="number" class="form-control" id="person" name="person" min="1" max="{{ room.capacity }}" required="required" value="{{ room.capacity }}">
+                            <input type="number" class="form-control" id="person"  name="person" min="1" max="{{ room.capacity }}" required="required" value="{{ room.capacity }}" readonly="readonly" >
                         </div>
-<div class="form-group">
-    <label for="check_in">Check-in:</label>
-    <input type="date" class="form-control" id="check_in" name="check_in" min="{{ todays_date }}" max="{{ max_date }}" required="required" value="{{ check_in }}"></div>
-    <div class="form-group">
-        <label for="check_out">Check-out:</label>
-        <input type="date" class="form-control" id="check_out" name="check_out" min="{{ tomorrow }}" max="{{ max_date }}" required="required" value="{{ check_out }}"></div>
-
-
+                        <div class="form-group">
+                            <label for="check_in">Check-in:</label>
+                            <input type="date" class="form-control" id="check_in" name="check_in" min="{{ timezone.now|date:'Y-m-d' }}" max="{{ max_date }}" required="required" value="{{ check_in }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="check_out">Check-out:</label>
+                            <input type="date" class="form-control" id="check_out" name="check_out" min="{{ timezone.now|date:'Y-m-d' }}" max="{{ max_date }}" required="required" value="{{ check_out }}">
+                        </div>
                         <div class="form-group">
                             <label for="roomtype">Room Type:</label>
                             <input type="text" class="form-control" id="roomtype" name="roomtype" disabled="disabled" value="{{ room.get_room_type_display }}">

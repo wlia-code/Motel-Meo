@@ -42,16 +42,6 @@ class SearchForm(forms.Form):
         if check_in and check_out and check_in > check_out:
             self.add_error('check_out', 'Check-out date cannot be before the check-in date.')
 
-
-
-class UserRegistrationForm(forms.Form):
-    """
-    Form for user registration with username and password fields.
-    """
-    username = forms.CharField(max_length=150)
-    password1 = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(widget=forms.PasswordInput)
-
 class BookingForm(forms.ModelForm):
     """
     This is a ModelForm for the Booking model.

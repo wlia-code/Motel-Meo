@@ -2,13 +2,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Hotel, Room, Booking
-from .forms import SearchForm, UserRegistrationForm,BookingForm,ContactForm
-from django.contrib.auth import authenticate, login, logout
+from .forms import SearchForm,BookingForm,ContactForm
+from django.contrib.auth import authenticate
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 import datetime
-from django.urls import reverse
-from django.core.mail import send_mail
 
 
 
@@ -100,7 +98,7 @@ def book_room(request):
 
         if check_in_date > check_out_date:
             messages.warning(request,"Check-in date must be before check-out date.")
-            return HttpResponse("Check-in date must be before check-out date.")
+            return render(request, 'bookroom.html', {'room': room, 'check_in': check_in_date.strftime("%Y-%m-%d"), 'check_out': check_out_date.strftime("%Y-%m-%d")})
         
         user_bookings = Booking.objects.filter(customer=current_user, room=room)
         if user_bookings.exists():
