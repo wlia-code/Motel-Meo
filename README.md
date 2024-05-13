@@ -159,7 +159,30 @@ These tools collectively help maintain the efficiency, reliability, and scalabil
 
 ## Built With
 
-(List of main libraries, frameworks used)
+Motel Meo was built using a combination of industry-standard technologies and tools:
+
+**Core Technologies:**
+
+* **Django:** A high-level Python web framework used for the backend logic and structure of the application.
+* **Python:** The primary programming language used throughout the project for its readability and robust web development capabilities.
+* **HTML:**  Used to define the structure and content of the web pages.
+* **CSS:**  Used for styling the visual presentation of the website.
+* **JavaScript:**  Used for adding interactivity and dynamic elements to the web pages. 
+
+**Additional Libraries & Frameworks:**
+
+* **Django Allauth:** Simplifies user authentication and registration processes.
+* **Whitenoise:**  Efficiently serves static files in production environments.
+* **Bootstrap 5:**  Provides a responsive grid system and pre-styled UI components.
+* **Font Awesome:**  Offers a wide range of icons for visual enhancements.
+
+**Other Tools & Services:**
+
+* **ElephantSQL:** Cloud-based PostgreSQL database for data storage and management.
+* **Heroku:** Platform for deploying and hosting the application.
+* **Git:** Version control system for tracking code changes.
+* **GitHub:**  Web-based hosting service for version control using Git.
+* **Cloudinary:**  Cloud-based media management service for storing and delivering images and other media assets.
 
 ## Authors
 
