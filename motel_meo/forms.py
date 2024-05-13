@@ -1,5 +1,5 @@
 from django import forms
-from .models import Hotel,Booking
+from .models import Hotel, Booking
 from django.utils import timezone
 from django.core.mail import send_mail
 from django.core.exceptions import ImproperlyConfigured
@@ -7,24 +7,33 @@ from django.core.exceptions import ImproperlyConfigured
 
 class SearchForm(forms.Form):
     """
-    Form for searching hotel rooms based on location, check-in date, check-out date, and capacity.
+    Form for searching hotel rooms based on location,
+    check-in date, check-out date, and capacity.
     """
     search_location = forms.ModelChoiceField(
-        queryset=Hotel.objects.all(), 
+        queryset=Hotel.objects.all(),
         empty_label="Select a location",
         widget=forms.Select(attrs={'class': 'form-control'})
     )
     check_in = forms.DateField(
-        label="Check-in Date", 
-        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'min': timezone.now().date()})
+        label="Check-in Date",
+        widget=forms.DateInput(
+            attrs={
+                'type': 'date',
+                'class': 'form-control',
+                'min': timezone.now().date()})
     )
     check_out = forms.DateField(
-        label="Check-out Date", 
-        widget=forms.DateInput(attrs={'type': 'date', 'class': 'form-control', 'min': timezone.now().date()})
+        label="Check-out Date",
+        widget=forms.DateInput(
+            attrs={
+                'type': 'date',
+                'class': 'form-control',
+                'min': timezone.now().date()})
     )
     capacity = forms.IntegerField(
         label="Capacity",
-        min_value=0, 
+        min_value=0,
         widget=forms.NumberInput(attrs={'class': 'form-control'})
     )
 
@@ -37,23 +46,33 @@ class SearchForm(forms.Form):
             self.add_error('check_in', 'Check-in date cannot be in the past.')
 
         if check_out and check_out < timezone.now().date():
-            self.add_error('check_out', 'Check-out date cannot be in the past.')
+            self.add_error(
+                'check_out',
+                'Check-out date cannot be in the past.')
 
         if check_in and check_out and check_in > check_out:
-            self.add_error('check_out', 'Check-out date cannot be before the check-in date.')
+            self.add_error(
+                'check_out',
+                'Check-out date cannot be before the check-in date.')
+
 
 class BookingForm(forms.ModelForm):
     """
     This is a ModelForm for the Booking model.
     It includes fields for room, check-in date, and check-out date.
-    The check-in and check-out fields are date input fields with a minimum value of the current date.
+    The check-in and check-out fields are date input
+    fields with a minimum value of the current date.
     """
     class Meta:
         model = Booking
         fields = ['room', 'check_in', 'check_out']
         widgets = {
-            'check_in': forms.DateInput(attrs={'type': 'date', 'min': timezone.now().date()}),
-            'check_out': forms.DateInput(attrs={'type': 'date', 'min': timezone.now().date()}),
+            'check_in':
+                forms.DateInput
+                (attrs={'type': 'date', 'min': timezone.now().date()}),
+            'check_out':
+                forms.DateInput
+                (attrs={'type': 'date', 'min': timezone.now().date()}),
         }
 
     def clean(self):
@@ -66,10 +85,9 @@ class BookingForm(forms.ModelForm):
 
         if check_out and check_out < timezone.now().date() and 'check_out' in self.changed_data:
             self.add_error('check_out', 'Check-out date cannot be in the past.')
-            
+
         if check_in and check_out and check_in > check_out:
             self.add_error('check_in', 'Check-in date must be before check-out date.')
-
 
 
 class ContactForm(forms.Form):
@@ -85,3 +103,4 @@ class ContactForm(forms.Form):
         sender = self.cleaned_data['email']
         recipients = ['wasimalrawas9@gmail.com']
         send_mail(subject, message, sender, recipients, fail_silently=False)
+        
