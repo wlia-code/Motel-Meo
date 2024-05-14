@@ -11,12 +11,17 @@
 
 - [Project Description](#project-description)
 - [Features](#features)
+  - [Hotel Management](#hotel-management)
+  - [Room Management](#room-management)
+  - [Booking System](#booking-system)
+- [Visual Overview](#visual-overview) *(Screenshots)*
 - [Strategy](#strategy)
 - [Installation & Usage](#installation--usage)
-- [Tools Used](#tools-used)
-- [Built With](#built-with)
-- [Testing](#tisting)
+- [Testing](#testing)
 - [Bugs Found and Fixed](#bugs-found-and-fixed)
+- [Built With](#built-with) 
+- [Deployment](#deployment)
+- [Credits](#credits)
 - [Acknowledgments](#acknowledgments)
 
 ## Project Description
@@ -127,59 +132,43 @@ Displayed after a user successfully submits the contact form, confirming that th
 
 ## Strategy
 
-The goal of the Motel Meo project is to develop a web-based application that allows users to book and manage motel rooms, facilitating smoother operations and enhanced user engagement for motel owners. The project is implemented using Django, Python, HTML/CSS, and JavaScript to ensure a smooth UI/UX design and functionality.
+The Motel Meo project aims to create a web application for booking and managing motel rooms, enhancing operational efficiency and user engagement for motel owners. It leverages Django, Python, HTML/CSS, and JavaScript to deliver a robust UI/UX.
 
 ### Objectives
 
 - **Project Setup**
-  - Create the initial Django project and application.
-  - Set up the directory structure following Django's common best practices.
-  - Define and create database models relevant for motel operation.
-  - Integrate custom CSS & JavaScript files.
-  - Develop a `base.html` template for consistent layout throughout the app.
-  - Use Google Fonts for better typography.
+  - Initialize Django project and applications with a structured directory.
+  - Define database models for motel operations and integrate custom CSS & JavaScript.
+  - Develop a `base.html` for consistent layouts and integrate Google Fonts.
 
-- **UX**
-  - Include a custom favicon (e.g., a motel icon).
-  - Implement Whitenoise to manage static files effectively.
-  - Allow users to view various motel rooms and book as per their choice.
-  - Style the login and registration pages using allauth.
-  - Create an engaging Homepage.
-  - Add a contact form on the contact page.
-  - Implement notifications and alerts for improved interaction.
+- **User Experience (UX)**
+  - Customize UI elements like favicon, static file management with Whitenoise, and styled authentication pages using allauth.
+  - Design an engaging homepage, implement a functional contact form, and notifications for user interactions.
 
 - **Navigation**
-  - Implement a consistent Navbar across all pages.
-  - Add a Footer with copyright information in the same style across all pages.
+  - Ensure consistent navigation with a Navbar and styled Footer across all pages.
 
 - **CRUD Functionality**
-  - Allow users to view upcoming bookings.
-  - Provide functionality to book a room.
-  - Enable cancellation of bookings.
-  - Enhance admin capabilities for room and booking management.
-  - Allow booking updates from user sides.
+  - Facilitate room bookings, viewing, updating, and cancellation through user-friendly interfaces.
+  - Enhance admin capabilities for comprehensive room and booking management.
 
 - **Authentication**
-  - Setup Django allauth for user registration and authentication.
-  - Enable account management for users, including password changes.
-  
+  - Implement Django allauth for secure user registration, authentication, and account management.
+
 - **Validation**
-  - Implement validations in the booking form to ensure availability and correctness of data.
+  - Ensure booking form validations for data accuracy and availability.
 
 - **Administration**
-  - Provide detailed admin features to manage bookings and room details.
+  - Equip admins with detailed features for managing bookings and room details comprehensively.
 
 - **Deployment**
-  - Used Heroku for deployment.
-  - Set up a production-ready environment with proper settings.
-  - Ensure that static and media files are managed through cloud services like Cloudinary.
+  - Deploy using Heroku, ensuring a production-ready setup with Cloudinary for file management.
 
 - **Testing**
-  - Develop unit tests for critical application components.
-  - Conduct manual testing to ensure all user journeys work as intended.
+  - Develop and conduct unit and manual testing to validate functionality and user journeys.
 
 - **Documentation**
-  - Maintain a comprehensive README.md to guide future development and deployment.
+  - Maintain detailed documentation in README.md for guiding ongoing and future development.
 
 
       [Back to Top](#Table-of-Contents)
