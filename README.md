@@ -45,54 +45,80 @@ Motel Meo provides a comprehensive and user-friendly platform for motel booking 
 
 ### Home Page
 ![Home Page](media/home.png)
+
 The home page welcomes users with a clean and intuitive interface, providing easy navigation to all major sections of the website.
 
+
 ### About Us
+
 ![About Us](media/about.png)
+
 This page gives an overview of Motel Meo, including our mission, vision, and values.
 
 ### Services
+
 ![Services](media/services.png)
+
 Details the range of services offered by Motel Meo, enhancing the stay experience for guests.
 
 ### Search Bar
+
 ![Search Bar](media/searchbar.png)
+
 Allows users to quickly find available motels based on location, date, and other preferences.
 
 ### Search Results
+
 ![Search Results](media/searchresults.png)
+
 Displays the motels that match the user's search criteria, complete with pricing and availability details.
 
 ### Booking Confirmation
+
 ![Booking Confirmation](media/bookconfirm.png)
+
 Confirms a user’s reservation with all relevant details, ensuring clarity and ease of use.
 
 ### My Bookings
+
 ![My Bookings](media/mybooking.png)
+
 Users can view all their bookings, manage them, and access past booking history.
 
 ### Edit Booking
+
 ![Edit Booking](media/editbooking.png)
+
 Provides users with the ability to modify their existing bookings.
 
 ### Delete Confirmation
+
 ![Delete Confirmation](media/deleteconfirmation.png)
+
 A confirmation screen that ensures users are certain about deleting a booking.
 
 ### Sign In
+
 ![Sign In](media/signin.png)
+
 Secure login page for returning users.
 
 ### Sign Up
+
 ![Sign Up](media/signup.png)
+
 Registration page for new users to create an account.
 
 ### Contact Us
+
 ![Contact Us](media/contact.png)
+
 Contains contact information and a form for users to send inquiries or feedback.
 
 ### Success Message
+
 ![Success Message](media/success.png)
+
 Displayed after a user successfully submits the contact form, confirming that their message has been sent.
 
 **This visual guide provides a quick overview of the key functionalities and design elements of Motel Meo. Each component is crafted to ensure a seamless and enjoyable experience for our users.** 
@@ -195,30 +221,6 @@ Ensure that you have Python (version 3.7 or newer) installed on your system. If 
     $ python manage.py makemigrations
     $ python manage.py migrate
 
-
-## Tools Used
-
-Motel Meo was built using a variety of technologies and services to ensure high-quality development, ease of deployment, and user experience. Below are the tools used in the development and maintenance of the project:
-
-- [**GitHub**](https://github.com/) - Used for hosting the source code and version control.
-- [**VS Code**](https://code.visualstudio.com/) - Primary code editor for developing the application.
-- [**Heroku**](https://dashboard.heroku.com/) - Platform for deploying the live application.
-- [**ElephantSQL**](https://www.elephantsql.com/) - PostgreSQL as a service used for the project's database.
-- [**Balsamiq**](https://balsamiq.com/wireframes/) - For creating wireframes during the design phase.
-- [**Favicon.io**](https://favicon.io/) - For generating the site's favicon.
-- [**Font Awesome**](https://fontawesome.com/) - Provides icons used throughout the website.
-- [**Bootstrap5**](https://getbootstrap.com/) - Utilized for initial site styling.
-- [**Google Fonts**](https://fonts.google.com/) - For enhancing the typography of the site.
-- [**Code Institute Pylint**](https://pep8ci.herokuapp.com/) - For Python code validation to adhere to PEP8 standards.
-- [**HTML - W3C HTML Validator**](https://validator.w3.org/#validate_by_uri+with_options) - For validating HTML code.
-- [**CSS - Jigsaw CSS Validator**](https://jigsaw.w3.org/css-validator/#validate_by_uri) - For validating CSS code.
-- [**Chrome Dev Tools**](https://developer.chrome.com/docs/devtools/) - Used extensively for debugging and testing the project.
-- [**W.A.V.E.**](https://wave.webaim.org/) - For accessibility testing.
-- [**Cloudinary**](https://cloudinary.com/) - For managing static and media files, improving load times.
-- [**Chrome LightHouse extension**](https://developer.chrome.com/docs/lighthouse/overview/) - For assessing the performance and SEO of the web pages.
-
-These tools collectively help maintain the efficiency, reliability, and scalability of the Motel Meo project.
-
 ## Testing
 
 ### Python Test
@@ -255,13 +257,6 @@ These tools collectively help maintain the efficiency, reliability, and scalabil
   - No errors were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator)
 
 
-
-
-
-
-
-
-
 ## Built With
 
 Motel Meo was built using a combination of industry-standard technologies and tools:
@@ -289,9 +284,6 @@ Motel Meo was built using a combination of industry-standard technologies and to
 * **GitHub:**  Web-based hosting service for version control using Git.
 * **Cloudinary:**  Cloud-based media management service for storing and delivering images and other media assets.
 
-## Authors
-
-## Acknowledgments
 
 ## Bugs Found and Fixed
 
@@ -316,4 +308,53 @@ Motel Meo was built using a combination of industry-standard technologies and to
 
 ### Conclusion
 
-The above fixes have significantly improved the stability and performance of our application. We are committed to maintaining a high standard of quality and responsiveness in addressing any future issues that may arise.
+The above fixes have significantly improved the stability and performance of our application. I committed to maintaining a high standard of quality and responsiveness in addressing any future issues that may arise.
+
+## Credits
+
+### Content
+
+- The icons in the serves page sourced from [Font Awesome](https://fontawesome.com).
+- All fonts were sourced from [Google Fonts](https://fonts.google.com).
+- Responsive design and components were implemented using [Bootstrap](https://getbootstrap.com).
+- User authentication was managed with [Django Allauth](https://django-allauth.readthedocs.io/en/latest/).
+
+### Media
+
+- Images were sourced from [Unsplash](https://unsplash.com), providing high-resolution photographs for the website.
+- Emojis were sourced from [Get Emoji](https://getemoji.com/).
+
+### Github Template
+
+- The project template was provided by the [Code Institute Template](https://github.com/Code-Institute-Org/gitpod-full-template).
+
+### Tools To Build README File
+
+- Website screenshots were captured using the [GoFullPage - Full Page Screen Capture](https://chrome.google.com/webstore/detail/gofullpage-full-page-scre/fdpohaocaechififmbbbbbknoalclacl) extension.
+- The README file was crafted using [readme.so](https://readme.so/).
+
+### Development Tools
+
+Motel Meo was developed using a variety of tools to ensure high-quality development and user experience:
+
+- [GitHub](https://github.com/) for hosting and version control.
+- [VS Code](https://code.visualstudio.com/) as the primary code editor.
+- [Heroku](https://dashboard.heroku.com/) for application deployment.
+- [ElephantSQL](https://www.elephantsql.com/) for database management.
+- [Balsamiq](https://balsamiq.com/wireframes/) for wireframe creation.
+- [Favicon.io](https://favicon.io/) for favicon generation.
+- [Bootstrap5](https://getbootstrap.com/) and [Google Fonts](https://fonts.google.com/) for styling.
+- [Code Institute Pylint](https://pep8ci.herokuapp.com/), [W3C HTML Validator](https://validator.w3.org/#validate_by_uri+with_options), and [Jigsaw CSS Validator](https://jigsaw.w3.org/css-validator/#validate_by_uri) for code validation.
+- [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/), [W.A.V.E.](https://wave.webaim.org/), and [Chrome LightHouse extension](https://developer.chrome.com/docs/lighthouse/overview/) for testing and optimization.
+- [Cloudinary](https://cloudinary.com/) for media management.
+
+These tools collectively enhance the efficiency, reliability, and scalability of the Motel Meo project.
+
+## Acknowledgements
+
+I would like to express my gratitude to several key individuals who have supported me throughout the development of Motel Meo.
+
+### Mentorship
+- **Victor Miclovich**: thanks to Victor for his invaluable guidance and mentorship.
+### Support
+- **Code Institute Student Care**: A special thank you to the Student Care team at [Code Institute](https://codeinstitute.net).
