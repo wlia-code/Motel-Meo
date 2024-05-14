@@ -250,8 +250,3 @@ def services_page(request):
     services page of the website.
     """
     return render(request, "services_page.html")
-<<<<<<< HEAD
-    
-=======
-    
->>>>>>> origin/main
