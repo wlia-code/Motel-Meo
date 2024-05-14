@@ -352,6 +352,7 @@ The above fixes have significantly improved the stability and performance of our
 - All fonts were sourced from [Google Fonts](https://fonts.google.com).
 - Responsive design and components were implemented using [Bootstrap](https://getbootstrap.com).
 - User authentication was managed with [Django Allauth](https://django-allauth.readthedocs.io/en/latest/).
+- The coding solutions and expert advice sourced from [Stack Overflow](https://stackoverflow.com).
 
 ### Media
 
