@@ -2,6 +2,11 @@
 
 **Motel Meo: A Django-powered web application for seamless hotel management and booking**
 
+![website_Screenshot](media/website_Screenshot.png)
+
+- [Live Site](https://motel-meo-2bd41eb1b83a.herokuapp.com/)
+- [GitHub Repo](https://github.com/wlia-code/Motel-Meo)
+
 ## Table of Contents
 
 - [Project Description](#project-description)
@@ -9,11 +14,10 @@
 - [Strategy](#strategy)
 - [Installation & Usage](#installation--usage)
 - [Tools Used](#tools-used)
-- [Running the Tests](#running-the-tests)
 - [Built With](#built-with)
-- [Authors](#authors)
-- [Acknowledgments](#acknowledgments)
+- [Testing](#tisting)
 - [Bugs Found and Fixed](#bugs-found-and-fixed)
+- [Acknowledgments](#acknowledgments)
 
 ## Project Description
 
@@ -33,6 +37,65 @@ Each hotel can list several types of rooms, specifying details like room type (e
 
 Customers can book rooms based on their preferences, with features such as selecting check-in and check-out dates, viewing room types, and confirming bookings instantly
 
+## overview
+
+## Overview
+
+Motel Meo provides a comprehensive and user-friendly platform for motel booking and management. Below are key screenshots that illustrate the functionality and design of the application.
+
+### Home Page
+![Home Page](media/home.png)
+The home page welcomes users with a clean and intuitive interface, providing easy navigation to all major sections of the website.
+
+### About Us
+![About Us](media/about.png)
+This page gives an overview of Motel Meo, including our mission, vision, and values.
+
+### Services
+![Services](media/services.png)
+Details the range of services offered by Motel Meo, enhancing the stay experience for guests.
+
+### Search Bar
+![Search Bar](media/searchbar.png)
+Allows users to quickly find available motels based on location, date, and other preferences.
+
+### Search Results
+![Search Results](media/searchresults.png)
+Displays the motels that match the user's search criteria, complete with pricing and availability details.
+
+### Booking Confirmation
+![Booking Confirmation](media/bookconfirm.png)
+Confirms a user’s reservation with all relevant details, ensuring clarity and ease of use.
+
+### My Bookings
+![My Bookings](media/mybooking.png)
+Users can view all their bookings, manage them, and access past booking history.
+
+### Edit Booking
+![Edit Booking](media/editbooking.png)
+Provides users with the ability to modify their existing bookings.
+
+### Delete Confirmation
+![Delete Confirmation](media/deleteconfirmation.png)
+A confirmation screen that ensures users are certain about deleting a booking.
+
+### Sign In
+![Sign In](media/signin.png)
+Secure login page for returning users.
+
+### Sign Up
+![Sign Up](media/signup.png)
+Registration page for new users to create an account.
+
+### Contact Us
+![Contact Us](media/contact.png)
+Contains contact information and a form for users to send inquiries or feedback.
+
+### Success Message
+![Success Message](media/success.png)
+Displayed after a user successfully submits the contact form, confirming that their message has been sent.
+
+**This visual guide provides a quick overview of the key functionalities and design elements of Motel Meo. Each component is crafted to ensure a seamless and enjoyable experience for our users.** 
 
 ## Strategy
 
