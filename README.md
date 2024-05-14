@@ -1,5 +1,7 @@
 # Motel Meo
 
+**Motel Meo: A Django-powered web application for seamless hotel management and booking**
+
 ## Table of Contents
 
 - [Project Description](#project-description)
@@ -53,32 +55,28 @@ The goal of the Motel Meo project is to develop a web-based application that all
   - Style the login and registration pages using allauth.
   - Create an engaging Homepage.
   - Add a contact form on the contact page.
-  - Implement 403, 404, and 500 error pages for better error management.
-  - Enable both users and admins to view past and current bookings.
   - Implement notifications and alerts for improved interaction.
 
 - **Navigation**
   - Implement a consistent Navbar across all pages.
-  - Add a Footer with necessary links and copyright information in the same style across all pages.
+  - Add a Footer with copyright information in the same style across all pages.
 
 - **CRUD Functionality**
-  - Allow users to view upcoming and past bookings.
+  - Allow users to view upcoming bookings.
   - Provide functionality to book a room.
   - Enable cancellation of bookings.
   - Enhance admin capabilities for room and booking management.
-  - Allow booking updates from both user and admin sides.
+  - Allow booking updates from user sides.
 
 - **Authentication**
   - Setup Django allauth for user registration and authentication.
-  - Enable account management for users, including email updates and password changes.
-  - Implement email notifications for booking confirmations, cancellations, and updates.
-
+  - Enable account management for users, including password changes.
+  
 - **Validation**
   - Implement validations in the booking form to ensure availability and correctness of data.
 
 - **Administration**
   - Provide detailed admin features to manage bookings and room details.
-  - Facilitate admin approval of bookings.
 
 - **Deployment**
   - Used Heroku for deployment.
@@ -103,26 +101,36 @@ Ensure that you have Python (version 3.7 or newer) installed on your system. If 
 ### Setup
 1. Clone the project repository:
    ```bash
-   git clone https://github.com/yourusername/motel-meo.git
+   $ git clone https://github.com/yourusername/motel-meo.git
 
 2. Navigate into the project directory:
    ```bash
-   cd motel-meo
+    $ cd motel-meo
 
 3. Install dependencies:
    ```bash
-   pip install -r requirements.txt
+    $ pip install -r requirements.txt
+
+- Create a env.py file and add the Environment Variables:
+  - DATABASE_URL
+  - SECRET_KEY
+  - CLOUDINARY_URL
+  - EMAIL_USER
+  - EMAIL_PASSWORD
+- Create a .gitignore file And add the following files to it:
+  - env.py
+  - venv
 
 ### Running the Application
 
 1. Start the development server
    ```bash
-   python manage.py runserver
+    $ python manage.py runserver
 
 1. Apply database migrations (create tables based on your models)
    ```bash
-    python manage.py makemigrations
-    python manage.py migrate
+    $ python manage.py makemigrations
+    $ python manage.py migrate
 
 
 ## Tools Used
@@ -147,15 +155,49 @@ Motel Meo was built using a variety of technologies and services to ensure high-
 - [**Chrome LightHouse extension**](https://developer.chrome.com/docs/lighthouse/overview/) - For assessing the performance and SEO of the web pages.
 
 These tools collectively help maintain the efficiency, reliability, and scalability of the Motel Meo project.
-## Running the Tests
 
-### Test 1
+## Testing
 
-(Explanation of what the test does and how to interpret the results)
+### Python Test
 
-### Test 2
+- File can be found at `Motel_Meo/test.py`
 
-(Another explanation)
+  - Running the Test using This Command:**
+    ```bash
+    $ python manage.py test
+
+### Motel Meo was tested on the following browsers: 
+
+  - Google Chrome
+  - Mozilla Firefox
+  - Microsoft Edge
+  - Apple Safari
+
+### Validator Testing:
+
+- Accessibility Testing
+
+  - No errors were returned when passing through [WAVE Evaluation Tool](https://wave.webaim.org/)
+
+  - Accessibility second Testing Using chrome lighthouse ![chrome_lighthouse ](media/lighthousetesting.png)
+
+- Codeinstitute Python Linter
+  - No errors were returned when passing through codeinstitute Python Linter [CI Python Linter](https://pep8ci.herokuapp.com/)
+
+- JAVASCRIPT
+  - No errors were returned when passing through the official [jshint](https://jshint.com/)
+- HTML
+  - No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/#textarea)
+- CSS
+  - No errors were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator)
+
+
+
+
+
+
+
+
 
 ## Built With
 
