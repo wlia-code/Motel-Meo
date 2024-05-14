@@ -159,17 +159,14 @@ def my_booking(request):
     View function for displaying user's bookings.
     Requires the user to be logged in.
     """
-<<<<<<< HEAD
     if not request.user.is_authenticated:
         return redirect("home")
     user = User.objects.get(id=request.user.id)
     bookings = Booking.objects.filter(customer=user)
-=======
-    if not request.user.is_authenticated:  # Directly using 'not' for boolean check
+    if not request.user.is_authenticated:
         return redirect("home")
-    user = User.objects.get(id=request.user.id)  # Simplified query
-    bookings = Booking.objects.filter(customer=user)  # Simplified query
->>>>>>> origin/main
+    user = User.objects.get(id=request.user.id)
+    bookings = Booking.objects.filter(customer=user)
     if not bookings:
         messages.warning(request, "No Bookings Found")
     return HttpResponse(render(request, "my_booking.html", {"bookings": bookings}))
