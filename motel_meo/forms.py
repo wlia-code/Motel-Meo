@@ -103,8 +103,3 @@ class ContactForm(forms.Form):
         sender = self.cleaned_data['email']
         recipients = ['wasimalrawas9@gmail.com']
         send_mail(subject, message, sender, recipients, fail_silently=False)
-<<<<<<< HEAD
-        
-=======
-        
->>>>>>> origin/main
