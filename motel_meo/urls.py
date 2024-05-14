@@ -1,6 +1,5 @@
 from django.urls import path
-from .views import home , book_room_page, book_room, my_booking, edit_booking, delete_booking, contact, success_view,about_page, services_page, search
-
+from .views import home, book_room_page, book_room, my_booking, edit_booking, delete_booking, contact, success_view, about_page, services_page, search
 
 urlpatterns = [
     path("", home, name="home-page"),
