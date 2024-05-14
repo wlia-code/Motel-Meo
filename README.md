@@ -37,7 +37,7 @@ Each hotel can list several types of rooms, specifying details like room type (e
 
 Customers can book rooms based on their preferences, with features such as selecting check-in and check-out dates, viewing room types, and confirming bookings instantly
 
-## overview
+[Back to Top](#Table-of-Contents)
 
 ## Overview
 
@@ -123,6 +123,8 @@ Displayed after a user successfully submits the contact form, confirming that th
 
 **This visual guide provides a quick overview of the key functionalities and design elements of Motel Meo. Each component is crafted to ensure a seamless and enjoyable experience for our users.** 
 
+[Back to Top](#Table-of-Contents)
+
 ## Strategy
 
 The goal of the Motel Meo project is to develop a web-based application that allows users to book and manage motel rooms, facilitating smoother operations and enhanced user engagement for motel owners. The project is implemented using Django, Python, HTML/CSS, and JavaScript to ensure a smooth UI/UX design and functionality.
@@ -179,6 +181,8 @@ The goal of the Motel Meo project is to develop a web-based application that all
 - **Documentation**
   - Maintain a comprehensive README.md to guide future development and deployment.
 
+
+      [Back to Top](#Table-of-Contents)
 ## Installation & Usage
 
 ### Prerequisites
@@ -221,6 +225,8 @@ Ensure that you have Python (version 3.7 or newer) installed on your system. If 
     $ python manage.py makemigrations
     $ python manage.py migrate
 
+[Back to Top](#Table-of-Contents)
+
 ## Testing
 
 ### Python Test
@@ -257,6 +263,8 @@ Ensure that you have Python (version 3.7 or newer) installed on your system. If 
   - No errors were found when passing through the official [(Jigsaw) validator](https://jigsaw.w3.org/css-validator/validator)
 
 
+[Back to Top](#Table-of-Contents)
+
 ## Built With
 
 Motel Meo was built using a combination of industry-standard technologies and tools:
@@ -284,6 +292,7 @@ Motel Meo was built using a combination of industry-standard technologies and to
 * **GitHub:**  Web-based hosting service for version control using Git.
 * **Cloudinary:**  Cloud-based media management service for storing and delivering images and other media assets.
 
+[Back to Top](#Table-of-Contents)
 
 ## Bugs Found and Fixed
 
@@ -301,6 +310,12 @@ Motel Meo was built using a combination of industry-standard technologies and to
 - **Solution**: After evaluating both options, we decided to use WhiteNoise for its simplicity and efficiency in serving static files directly from the server. Removed the Cloudinary storage setting.
 - **Outcome**: Simplified the static file handling and removed the dependency on external services for serving static files.
 
+### 3. duplicated Files in Git Repository:
+- **The duplicate files were removed from the Git repository using the command:**
+    ```bash
+    git rm --cached img
+    ```
+
 ### Ongoing Issues
 
 - **Current Bugs**: No critical bugs are currently impacting production. Minor UI adjustments are in progress.
@@ -309,6 +324,36 @@ Motel Meo was built using a combination of industry-standard technologies and to
 ### Conclusion
 
 The above fixes have significantly improved the stability and performance of our application. I committed to maintaining a high standard of quality and responsiveness in addressing any future issues that may arise.
+
+[Back to Top](#Table-of-Contents)
+
+## Deployment
+
+### ElephantSQL
+
+1. Log into [ElephantSQL](https://customer.elephantsql.com/login).
+2. Create a new instance by selecting the _Tiny Turtle_ plan and your local region.
+3. After creation, from the dashboard, click on the instance name and copy the _Database URL_ for Heroku configuration.
+
+### Cloudinary
+
+1. Log into [Cloudinary](https://cloudinary.com).
+2. From the dashboard, copy the _API Environment variable_ for Heroku configuration.
+
+### Heroku
+
+1. Log into [Heroku](https://www.heroku.com/) and create a new app.
+2. In the _Settings_ tab, add the following config vars:
+   - `CLOUDINARY_URL` (from Cloudinary)
+   - `DATABASE_URL` (from ElephantSQL)
+   - `SECRET_KEY`
+   - `PORT`
+   - `EMAIL_PASSWORD` (from your email provider)
+3. In the _Resources_ tab, attach the Heroku Postgres service.
+4. In the _Deploy_ tab, connect to GitHub, select your repository, and set up automatic deployments from the main branch.
+5. Optionally, perform a manual deploy to build the app.
+
+[Back to Top](#Table-of-Contents)
 
 ## Credits
 
@@ -350,6 +395,8 @@ Motel Meo was developed using a variety of tools to ensure high-quality developm
 
 These tools collectively enhance the efficiency, reliability, and scalability of the Motel Meo project.
 
+[Back to Top](#Table-of-Contents)
+
 ## Acknowledgements
 
 I would like to express my gratitude to several key individuals who have supported me throughout the development of Motel Meo.
@@ -358,3 +405,5 @@ I would like to express my gratitude to several key individuals who have support
 - **Victor Miclovich**: thanks to Victor for his invaluable guidance and mentorship.
 ### Support
 - **Code Institute Student Care**: A special thank you to the Student Care team at [Code Institute](https://codeinstitute.net).
+
+[Back to Top](#Table-of-Contents)
